@@ -49,5 +49,17 @@
 	    ]]>
 	</select>
 
+<select id="selectKeywordSearch" parameterType="String"
+resultMap="goodsResult">
+	    <![CDATA[
+    	select goods_keyword
+    	from cat_goods_tbl
+    	where
+    	goods_keyword like '%'|| #{keyword} || '%'
+    	]]>
+
+
+</select>
+
 
 </mapper>

@@ -48,6 +48,14 @@ public class GoodsServiceImpl implements GoodsService{
 		List goodsList=goodsDAO.selectGoodsBySearchWord(searchWord);
 		return goodsList;
 	}
+
+
+	@Override
+	public List<String> keywordSearch(String keyword) throws Exception {
+		List<String> list = goodsDAO.selectKeywordSearch(keyword);
+		
+		return list;
+	}
 	
 	
 

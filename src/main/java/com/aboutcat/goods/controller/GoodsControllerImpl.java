@@ -1,6 +1,7 @@
 package com.aboutcat.goods.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,11 +24,15 @@ public class GoodsControllerImpl implements GoodsController {
 	
 	@Override
 	@RequestMapping(value="/goodsDetail.do" ,method = RequestMethod.GET)
-	public ModelAndView goodsDetail(String goods_id, HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView goodsDetail(@RequestParam("goods_id") String goods_id, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 	
-		goodsService.goodsDetail(goods_id);
-		return null;
+		String viewName= (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		
+		Map goodsMap = goodsService.goodsDetail(goods_id);
+		mav.addObject("goodsMap", goodsMap);
+		return mav;
 	}
 
 
@@ -41,6 +46,20 @@ public class GoodsControllerImpl implements GoodsController {
 		return mav;
 		
 	}
+	
+	
+	@RequestMapping(value = "/keywordSearch.do" ,method = RequestMethod.GET)
+	public void keywordSearch(@RequestParam("keywordSearch") String keywordSearch, HttpServletRequest request, 
+			HttpServletResponse response) throws Exception {
+		
+		String viewName = (String) request.getAttribute("viewName");
+		
+		List<String> keywordList= goodsService.keywordSearch(keywordSearch);
+		//그뒤에 JSON쓰는 이유 몰라서 아직 안씀
+	}
+	
+	
+	
 
 	
 

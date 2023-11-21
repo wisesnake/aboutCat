@@ -25,8 +25,8 @@
 	  <property name="configLocation" value="classpath:mybatis/models/modelConfig.xml"  />
 	  <property name="mapperLocations" value="classpath:mybatis/mappers/*.xml" />
 	</bean >
-	
-	<bean id ="transactionManager"
+	<!-- 트렌젝션 필요없음 아무도 사용안함. -->
+	<bean id ="transactionManager"          
 	    class= "org.springframework.jdbc.datasource.DataSourceTransactionManager" >
 	    <property name ="dataSource" ref= "dataSource"></property >
 	</bean >
