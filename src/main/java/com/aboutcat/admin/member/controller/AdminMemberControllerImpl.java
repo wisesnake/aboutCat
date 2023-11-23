@@ -39,7 +39,7 @@ public class AdminMemberControllerImpl extends BaseController implements AdminMe
 //		session.setAttribute("menu_mode", "admin_mode");
 		String section = dateMap.get("section");
 		String pageNum = dateMap.get("pageNum");
-		//쿼리에서 페이징에 맞게 쿼리결과 뽑아오기 위해 넘길 값
+		// 쿼리에서 페이징에 맞게 쿼리결과 뽑아오기 위해 넘길 값
 
 		String searchPeriod = dateMap.get("searchPeriod");
 		String beginDate = null, endDate = null;
@@ -47,34 +47,43 @@ public class AdminMemberControllerImpl extends BaseController implements AdminMe
 		String tempDate[] = calcSearchPeriod(searchPeriod).split(",");
 		beginDate = tempDate[0];
 		endDate = tempDate[1];
-		
-		dateMap.put("beginDate",beginDate);
-		dateMap.put("endDate",endDate);
-		
-		HashMap<String,Object> condMap = new HashMap<String,Object>();
-		
-		if(section == null) {
+
+		dateMap.put("beginDate", beginDate);
+		dateMap.put("endDate", endDate);
+
+		HashMap<String, Object> condMap = new HashMap<String, Object>();
+
+		if (section == null) {
 			section = "1";
 		}
 		condMap.put("section", section);
-		
-		if(pageNum == null) {
+
+		if (pageNum == null) {
 			pageNum = "1";
 		}
 		condMap.put("pageNum", pageNum);
-		//최초요청시 = 클라이언트에서 1페이지를 봄
+		// 최초요청시 = 클라이언트에서 1페이지를 봄
 		
 		condMap.put("beginDate", beginDate);
 		condMap.put("endDate", endDate);
+		//비긴데이트 : 2023-07-23(디폴트4개월전) 엔드데이트 : 2023-11-23(오늘)
+		String tempBeginDate[] = beginDate.split("-");
+		String tempEndDate[] = endDate.split("-");
+
+		model.addAttribute("beginYear",tempBeginDate[0]);
+		model.addAttribute("beginMonth",tempBeginDate[1]);
+		model.addAttribute("beginDay",tempBeginDate[2]);
+		model.addAttribute("endYear",tempEndDate[0]);
+		model.addAttribute("endMonth",tempEndDate[1]);
+		model.addAttribute("endDay",tempEndDate[2]);
 		
 		ArrayList<MemberVO> membersList = adminMemberService.listMember(condMap);
 		
-		System.out.println(membersList);
 		
-		
-		model.addAttribute("membersList",membersList);
-		
-		
+		model.addAttribute("section",section);
+		model.addAttribute("pageNum",pageNum);
+		model.addAttribute("membersList", membersList);
+
 		
 		return "/admin/member/adminMemberMain";
 	}
