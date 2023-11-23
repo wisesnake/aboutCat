@@ -72,7 +72,6 @@ public abstract class BaseController  {
 	
 	protected String calcSearchPeriod(String fixedSearchPeriod){
 		//검색기간 버튼 누르면 fixed~Period 를 통해 들어옴, 그걸 기반으로 검색기간을 잡아주는 메소드
-		//
 		String beginDate=null;
 		String endDate=null;
 		String endYear=null;
@@ -82,15 +81,19 @@ public abstract class BaseController  {
 		String beginMonth=null;
 		String beginDay=null;
 		DecimalFormat df = new DecimalFormat("00");
+		//df.format 으로 formatting을 해줄 수 있으며, 생성자를 통해 2자리의 정수, 그리고 빈자리는 0으로 채우도록 설정하였음.
 		Calendar cal=Calendar.getInstance();
 		//오늘날짜를 저장해둔 객체. 여기에 add메소드를 이용해 주별로(-7,-14 등) 혹은 달별로 과거의 검색범위를 설정가능.
 		
 		endYear   = Integer.toString(cal.get(Calendar.YEAR));
+	
 		endMonth  = df.format(cal.get(Calendar.MONTH) + 1);
+		//자바에서 monday나 january등의 날짜 관련 enum은 0부터 시작함. 따라서 숫자로 표시하기 위해선 +1해야함.
 		endDay   = df.format(cal.get(Calendar.DATE));
 		endDate = endYear +"-"+ endMonth +"-"+endDay;
 		
 		if(fixedSearchPeriod == null) {
+			//디폴트 자체가 4개월전 기준.
 			cal.add(cal.MONTH,-4);
 		}else if(fixedSearchPeriod.equals("one_week")) {
 			cal.add(Calendar.DAY_OF_YEAR, -7);
