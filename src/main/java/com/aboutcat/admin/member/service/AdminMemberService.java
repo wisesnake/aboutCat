@@ -10,6 +10,8 @@ public interface AdminMemberService {
 
 	
 
-	ArrayList<MemberVO> listMember(HashMap<String, Object> condMap);
+	public ArrayList<MemberVO> listMember(HashMap<String, Object> condMap);
+
+	public MemberVO memberDetail(String member_id);
 
 }

@@ -8,8 +8,10 @@ import com.aboutcat.member.vo.MemberVO;
 
 public interface AdminMemberDAO {
 
-	List<MemberVO> selectAllMembers();
+	public List<MemberVO> selectAllMembers();
 
-	ArrayList<MemberVO> searchMemberList(HashMap<String, Object> condMap);
+	public ArrayList<MemberVO> searchMemberList(HashMap<String, Object> condMap);
+
+	public MemberVO memberDetail(String member_id);
 
 }

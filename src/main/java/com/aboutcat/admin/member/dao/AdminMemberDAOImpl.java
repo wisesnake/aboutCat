@@ -29,9 +29,17 @@ public class AdminMemberDAOImpl implements AdminMemberDAO{
 
 	@Override
 	public ArrayList<MemberVO> searchMemberList(HashMap<String, Object> condMap) {
+		System.out.println("endDate : " + condMap.get("endDate").toString()+"  beginDate :   " + condMap.get("beginDate").toString());
 		ArrayList<MemberVO> membersList = (ArrayList)sqlSession.selectList("mapper.admin.member.searchMembersList", condMap);
-		System.out.println(membersList);
 		return membersList;
+	}
+
+
+
+	@Override
+	public MemberVO memberDetail(String member_id) {
+		MemberVO member_info = sqlSession.selectOne("mapper.admin.member.memberDetail",member_id);
+		return member_info;
 	}
 	
 	

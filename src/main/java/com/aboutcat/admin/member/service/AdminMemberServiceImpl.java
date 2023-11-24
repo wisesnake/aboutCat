@@ -25,4 +25,12 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 		return memberList;
 	}
 
+
+
+	@Override
+	public MemberVO memberDetail(String member_id) {
+		MemberVO member_info = adminMemberDAO.memberDetail(member_id);
+		return member_info;
+	}
+
 }

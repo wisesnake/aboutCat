@@ -79,6 +79,7 @@ public class AdminMemberControllerImpl extends BaseController implements AdminMe
 		
 		ArrayList<MemberVO> membersList = adminMemberService.listMember(condMap);
 		
+		System.out.println(membersList);
 		
 		model.addAttribute("section",section);
 		model.addAttribute("pageNum",pageNum);
@@ -87,5 +88,27 @@ public class AdminMemberControllerImpl extends BaseController implements AdminMe
 		
 		return "/admin/member/adminMemberMain";
 	}
+
+	@Override
+	@RequestMapping(value = "/memberDetail.do")
+	public String memberDetail(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+		String viewName = (String)request.getAttribute("viewName");
+		String member_id = request.getParameter("member_id");
+		MemberVO member_info = adminMemberService.memberDetail(member_id);
+		model.addAttribute("member_info",member_info);
+		return viewName;
+	}
+
+	@Override
+	public void modifyMemberInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+	}
+
+	@Override
+	public void deleteMember(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+		
+	}
+	
+	
 
 }
