@@ -32,6 +32,7 @@ public class GoodsControllerImpl implements GoodsController {
 		
 		Map goodsMap = goodsService.goodsDetail(goods_id);
 		mav.addObject("goodsMap", goodsMap);
+		GoodsVO goodsVO = (GoodsVO) goodsMap.get("goodsVO");
 		return mav;
 	}
 

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ import com.aboutcat.goods.vo.GoodsVO;
 @EnableAspectJAutoProxy
 public class MainController extends BaseController {
 
+	@Autowired
 	private GoodsService goodsService;
 	
 	@RequestMapping(value= "/main/main.do" ,method={RequestMethod.POST,RequestMethod.GET})
@@ -33,8 +35,8 @@ public class MainController extends BaseController {
 		
 
 		
-//		Map<String, List<GoodsVO>> goodsMap = goodsService.listGoods();
-//		mav.addObject("goodsMap", goodsMap);
+		Map<String, List<GoodsVO>> goodsMap = goodsService.listGoods();
+		mav.addObject("goodsMap", goodsMap);
 		
 		return mav;
 	}

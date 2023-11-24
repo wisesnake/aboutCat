@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.aboutcat.goods.dao.GoodsDAO;
 import com.aboutcat.goods.vo.GoodsVO;
+import com.aboutcat.goods.vo.ImageFileVO;
 @Service("goodsService")
 public class GoodsServiceImpl implements GoodsService{
 
@@ -22,6 +23,9 @@ public class GoodsServiceImpl implements GoodsService{
 		
 		GoodsVO goodsVO = goodsDAO.selectGoodsDetail(goods_id);
 		goodsMap.put("goodsVO", goodsVO);
+		
+		List<ImageFileVO> imageList = goodsDAO.selectGoodsDetailImage(goods_id);
+		goodsMap.put("imageList", imageList);
 		return goodsMap;
 	}
 

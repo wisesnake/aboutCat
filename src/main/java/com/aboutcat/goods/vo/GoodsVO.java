@@ -2,12 +2,13 @@ package com.aboutcat.goods.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter
 @Getter
 @AllArgsConstructor
-
+@NoArgsConstructor
 public class GoodsVO {
 
 	private int goods_id;
@@ -21,6 +22,8 @@ public class GoodsVO {
 	private String goods_description;
 	private String goods_status;
 	private String goods_keyword;
+	
+	private String goods_image_fileName;
 	
 	
 	
