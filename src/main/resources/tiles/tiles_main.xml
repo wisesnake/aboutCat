@@ -23,9 +23,15 @@
 			value="/WEB-INF/views/main/main.jsp" />
 	</definition>
 	<definition name="/goods/goodsDetail" extends="baseLayout">
-		<put-attribute name="title" value="쇼핑몰 디테일 이미지" />
+		<put-attribute name="title" value="쇼핑몰 디테일 페이지" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/goods/goodsDetail.jsp" />
+	</definition>
+	
+		<definition name="/goods/keyword" extends="baseLayout">
+		<put-attribute name="title" value="쇼핑몰  키워드 페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/goods/keyword.jsp" />
 	</definition>
 </tiles-definitions>
 

@@ -19,6 +19,9 @@ public interface GoodsDAO {
 	public List<GoodsVO> selectGoodsBySearchWord(String searchWord) throws DataAccessException;
 
 	
+	public List<GoodsVO> selectKeyword(String keyword) throws DataAccessException;
+
 	public List<String> selectKeywordSearch(String keyword) throws DataAccessException;
 
+	
 }

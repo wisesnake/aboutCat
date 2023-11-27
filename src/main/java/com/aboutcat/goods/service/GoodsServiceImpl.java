@@ -55,12 +55,17 @@ public class GoodsServiceImpl implements GoodsService{
 
 
 	@Override
+	public List<GoodsVO> keyword(String keyword) throws Exception {
+		List<GoodsVO> list = goodsDAO.selectKeyword(keyword);
+		
+		return list;
+	}
+	
+	@Override
 	public List<String> keywordSearch(String keyword) throws Exception {
 		List<String> list = goodsDAO.selectKeywordSearch(keyword);
 		
 		return list;
 	}
-	
-	
 
 }
