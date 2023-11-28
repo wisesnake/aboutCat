@@ -2,9 +2,12 @@ package com.aboutcat.member.vo;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
 import lombok.Data;
 
 @Data
+@Component("memberVO")
 public class MemberVO {
 	private String member_id;
 

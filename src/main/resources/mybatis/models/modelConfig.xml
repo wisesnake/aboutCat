@@ -9,6 +9,8 @@
         <typeAlias type="com.aboutcat.goods.vo.GoodsVO" alias="goodsVO" />
         <typeAlias type="com.aboutcat.member.vo.MemberVO" alias="memberVO" />
          <typeAlias type="com.aboutcat.goods.vo.ImageFileVO" alias="imageFileVO" />
+         <typeAlias type="com.aboutcat.cart.vo.CartVO" alias="CartVO" />
+         <typeAlias type="com.aboutcat.order.vo.OrderVO" alias="OrderVO" />
       </typeAliases>
 </configuration>
 
