@@ -28,7 +28,7 @@ public class AdminMemberControllerImpl extends BaseController implements AdminMe
 	@Override
 	@RequestMapping(value = "/adminMemberMain.do")
 	public String adminMemberMain(@RequestParam Map<String, String> dateMap, HttpServletRequest request,
-			HttpServletResponse response, Model model) {
+			HttpServletResponse response, Model model) throws Exception {
 //		HttpSession session = request.getSession();
 //		String uid = (String) session.getAttribute("user_id");
 //		if (!uid.equals("admin")) {
@@ -110,22 +110,30 @@ public class AdminMemberControllerImpl extends BaseController implements AdminMe
 		String member_id=request.getParameter("member_id");
 		String mod_type=request.getParameter("mod_type");
 		String value =request.getParameter("value");
-		if(mod_type.equals("member_birth")){
+		if(mod_type.equals("member_pw")) {
+			memberMap.put("member_pw",value);
+		}else if(mod_type.contentEquals("member_gender")) {
+			memberMap.put("member_gender", value);
+		}else if(mod_type.equals("member_birth")){
 			val=value.split(",");
 			memberMap.put("birth_year",val[0]);
 			memberMap.put("birth_month",val[1]);
 			memberMap.put("birth_day",val[2]);
 			memberMap.put("birth_day_yinyang",val[3]);
-		}else if(mod_type.equals("hp")){
+		}else if(mod_type.equals("phone")){
 			val=value.split(",");
+			val[0] = val[0].replace("-", "");
+			System.out.println("phone number :" + val[0]);
 			memberMap.put("phone",val[0]);
-			memberMap.put("smssts_yn", val[1]);
+			memberMap.put("sms_valid_check", val[1]);
 		}else if(mod_type.equals("email")){
 			val=value.split(",");
-			memberMap.put("email1",val[0]);
-			memberMap.put("email2",val[1]);
+//			System.out.println("email : " + value);
+			memberMap.put("member_email1",val[0]);
+			memberMap.put("member_email2",val[1]);
 			memberMap.put("email_valid_check", val[2]);
 		}else if(mod_type.equals("address")){
+			System.out.println("address : " + value);
 			val=value.split(",");
 			memberMap.put("postcode",val[0]);
 			memberMap.put("address1_new",val[1]);
@@ -134,14 +142,23 @@ public class AdminMemberControllerImpl extends BaseController implements AdminMe
 		}
 		
 		memberMap.put("member_id", member_id);
-		
-//		adminMemberService.modifyMemberInfo(memberMap);
+		adminMemberService.modifyMemberInfo(memberMap);
 		pw.print("mod_success");
 		pw.close();	
 	}
 
-	@Override
-	public void deleteMember(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+	@RequestMapping(value="/deleteMember.do" ,method={RequestMethod.POST})
+	public String deleteMember(HttpServletRequest request, HttpServletResponse response, Model model)  throws Exception {
+		HashMap<String,String> memberMap=new HashMap<String,String>();
+		String member_id=request.getParameter("member_id");
+		String member_deleted=request.getParameter("member_deleted");
+		System.out.println(member_deleted);
+		memberMap.put("member_deleted", member_deleted);
+		memberMap.put("member_id", member_id);
+		
+		adminMemberService.modifyMemberInfo(memberMap);
+		model.addAttribute("deleted", true);
+		return "redirect:/admin/member/adminMemberMain.do";
 		
 	}
 	

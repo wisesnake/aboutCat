@@ -22,8 +22,8 @@ import lombok.extern.log4j.Log4j2;
 public interface AdminMemberController {
 	
 
-	public String adminMemberMain(Map<String, String> params, HttpServletRequest request, HttpServletResponse response,	Model model);
+	public String adminMemberMain(Map<String, String> params, HttpServletRequest request, HttpServletResponse response,	Model model) throws Exception;
 	public String memberDetail(HttpServletRequest request, HttpServletResponse response,Model model)  throws Exception;
 	public void modifyMemberInfo(HttpServletRequest request, HttpServletResponse response)  throws Exception;
-	public void deleteMember(HttpServletRequest request, HttpServletResponse response,Model model)  throws Exception;
+	public String deleteMember(HttpServletRequest request, HttpServletResponse response,Model model)  throws Exception;
 }

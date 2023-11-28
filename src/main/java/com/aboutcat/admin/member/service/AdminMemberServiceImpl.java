@@ -18,8 +18,7 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 
 
 
-	@Override
-	public ArrayList<MemberVO> listMember(HashMap<String, Object> condMap) {
+	public ArrayList<MemberVO> listMember(HashMap condMap) throws Exception {
 		ArrayList<MemberVO> memberList = adminMemberDAO.searchMemberList(condMap);
 		System.out.println(memberList);
 		return memberList;
@@ -27,10 +26,16 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 
 
 
-	@Override
-	public MemberVO memberDetail(String member_id) {
+	public MemberVO memberDetail(String member_id) throws Exception {
 		MemberVO member_info = adminMemberDAO.memberDetail(member_id);
 		return member_info;
+	}
+
+
+	
+	public void  modifyMemberInfo(HashMap memberMap) throws Exception{
+		 String member_id=(String)memberMap.get("member_id");
+		 adminMemberDAO.modifyMemberInfo(memberMap);
 	}
 
 }
