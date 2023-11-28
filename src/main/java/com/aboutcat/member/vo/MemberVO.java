@@ -24,7 +24,7 @@ public class MemberVO {
 
 	private Boolean email_valid_check;
 
-	private String posecode;
+	private String postcode;
 
 	private String address1_new;
 

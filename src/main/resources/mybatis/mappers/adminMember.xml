@@ -14,7 +14,7 @@
 		<result property="member_email1" column="member_email1" />
 		<result property="member_email2" column="member_email2" />
 		<result property="email_valid_check" column="email_valid_check" />
-		<result property="posecode" column="posecode" />
+		<result property="postcode" column="postcode" />
 		<result property="address1_new" column="address1_new" />
 		<result property="address1_old" column="address1_old" />
 		<result property="address2" column="address2" />
