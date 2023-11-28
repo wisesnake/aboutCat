@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.aboutcat.goods.dao.GoodsDAO;
 import com.aboutcat.goods.vo.GoodsVO;
+import com.aboutcat.goods.vo.ImageFileVO;
 @Service("goodsService")
 public class GoodsServiceImpl implements GoodsService{
 
@@ -22,6 +23,9 @@ public class GoodsServiceImpl implements GoodsService{
 		
 		GoodsVO goodsVO = goodsDAO.selectGoodsDetail(goods_id);
 		goodsMap.put("goodsVO", goodsVO);
+		
+		List<ImageFileVO> imageList = goodsDAO.selectGoodsDetailImage(goods_id);
+		goodsMap.put("imageList", imageList);
 		return goodsMap;
 	}
 
@@ -51,12 +55,17 @@ public class GoodsServiceImpl implements GoodsService{
 
 
 	@Override
+	public List<GoodsVO> keyword(String keyword) throws Exception {
+		List<GoodsVO> list = goodsDAO.selectKeyword(keyword);
+		
+		return list;
+	}
+	
+	@Override
 	public List<String> keywordSearch(String keyword) throws Exception {
 		List<String> list = goodsDAO.selectKeywordSearch(keyword);
 		
 		return list;
 	}
-	
-	
 
 }

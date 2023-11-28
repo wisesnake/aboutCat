@@ -25,7 +25,8 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 import com.aboutcat.goods.vo.ImageFileVO;
 
 public abstract class BaseController  {
-	private static final String CURR_IMAGE_REPO_PATH = "C:\\shopping\\file_repo";
+	private static final String CURR_IMAGE_REPO_PATH = "C:\\image\\file_repo";
+//	이미지 파일 경로
 	
 	protected List<ImageFileVO> upload(MultipartHttpServletRequest multipartRequest) throws Exception{
 		List<ImageFileVO> fileList= new ArrayList<ImageFileVO>();
