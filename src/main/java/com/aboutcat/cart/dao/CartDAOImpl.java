@@ -22,9 +22,10 @@ public class CartDAOImpl  implements  CartDAO{
 	}
 
 	public List<GoodsVO> selectGoodsList(List<CartVO> cartList) throws DataAccessException {
-		
+		System.out.println("카트다오 카트리스트 "+cartList.toString());
 		List<GoodsVO> myGoodsList;
 		myGoodsList = sqlSession.selectList("mapper.cart.selectGoodsList",cartList);
+		System.out.println("카트다오 굿리스트 : "+myGoodsList.toString());
 		return myGoodsList;
 	}
 	public boolean selectCountInCart(CartVO cartVO) throws DataAccessException {

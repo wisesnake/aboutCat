@@ -13,7 +13,7 @@
       <result property="creDate" column="creDate" />
    </resultMap>
    
-   <resultMap id="goodsResult" type="GoodsVO">
+<!--    <resultMap id="goodsResult" type="GoodsVO">
       <result property="goods_id" column="goods_id" />
       <result property="goods_name" column="goods_name" />
       <result property="goods_price" column="goods_price" />
@@ -22,38 +22,49 @@
       <result property="goods_sales_price" column="goods_sales_price" />
 
       <result property="goods_image_fileName" column="goods_image_fileName" />
-   </resultMap>
+   </resultMap> -->
+
+	<resultMap type="goodsVO" id="goodsResult">
+
+		<result property="goods_id" column="goods_id" />
+		<result property="goods_name" column="goods_name" />
+		<result property="goods_brand" column="goods_brand" />
+		<result property="goods_price" column="goods_price" />
+		<result property="goods_sell_price" column="goods_sell_price" />
+		<result property="stock" column="gods_stock" />
+		<result property="delivery_charge" column="delivery_charge" />
+		<result property="goods_description" column="goods_description" />
+		<result property="goods_status" column="goods_status" />
+		<result property="goods_keyword" column="goods_keyword" />
+		<result property="goods_image_fileName"
+			column="goods_image_fileName" />
+
+	</resultMap>
 
    <select id="selectCartList"  parameterType="cartVO"  resultMap="cartResult"   >
        <![CDATA[
       select cart_id, goods_id, member_id, cart_goods_qty, creDate 
-      from t_shopping_cart 
+      from cat_shopping_cart_tbl
       where member_id=#{member_id} 
       ]]>
    </select>
 
-   <select id="selectGoodsList" parameterType="String"
-      resultMap="goodsResult">
-        <![CDATA[
-         select t.*
-          from(
-         select g.*, i.goods_image_filename
-         from cat_goods_tbl g, cat_goods_image_tbl i
-           where g.goods_id=i.goods_id
-           and i.goods_image_type='main_image'
-           and goods_status=#{goodsStatus}) t
-                where   rowNum <16
-       ]]>
-       
-      <foreach item="item" collection="list" open="(" separator="," close=")">
-         #{item.goods_id}
-      </foreach>
-      order by g.goods_creDate desc
-   </select>
+	<select id="selectGoodsList" resultMap="goodsResult" parameterType="java.util.Map">
+      <![CDATA[
+          select g.*,d.goods_image_fileName from cat_goods_tbl g, cat_goods_image_tbl d
+          where g.goods_id=d.goods_id
+          and d.goods_image_type='main_image'
+           and g.goods_id in
+      ]]>
+		<foreach item="item" collection="list" open="(" separator="," close=")">
+			#{item.goods_id}
+		</foreach>
+		order by g.goods_id desc
+	</select>
 
    <select id="selectCountInCart" resultType="String" parameterType="cartVO">
        <![CDATA[
-          select decode(count(*), 0, 'false', 'true') from t_shopping_cart
+          select decode(count(*), 0, 'false', 'true') from cat_shopping_cart_tbl
          where goods_id=#{goods_id}
            and member_id=#{member_id} 
 
@@ -62,7 +73,7 @@
 
    <insert id="insertGoodsInCart" parameterType="cartVO">
        <![CDATA[
-             insert into t_shopping_cart(cart_id,
+             insert into cat_shopping_cart_tbl(cart_id,
                                         goods_id,
                                         member_id)
                            values(#{cart_id},
@@ -73,7 +84,7 @@
 
    <update id="updateCartGoodsQty" parameterType="cartVO">
        <![CDATA[
-         update t_shopping_cart
+         update cat_shopping_cart_tbl
                 set cart_goods_qty=#{cart_goods_qty}
                  where member_id=#{member_id}
                  and goods_id=#{goods_id}
@@ -81,14 +92,14 @@
    </update>
    <delete id="deleteCartGoods" parameterType="int">
        <![CDATA[
-         delete from t_shopping_cart
+         delete from cat_shopping_cart_tbl
          where cart_id=#{cart_id}
        ]]>
    </delete>
    
    <select id="selectMaxCartId" resultType="int">
        <![CDATA[
-         select nvl(max(cart_id), 0) + 1 from t_shopping_cart 
+         select nvl(max(cart_id), 0) + 1 from cat_shopping_cart_tbl 
        ]]>
    </select>
 
