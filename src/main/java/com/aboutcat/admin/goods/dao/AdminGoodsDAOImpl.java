@@ -13,29 +13,30 @@ import com.aboutcat.goods.vo.GoodsVO;
 import com.aboutcat.goods.vo.ImageFileVO;
 
 @Repository("adminGoodsDAO")
-public class AdminGoodsDAOImpl implements AdminGoodsDAO{
+public class AdminGoodsDAOImpl implements AdminGoodsDAO {
 
 	@Autowired
 	private SqlSession sqlSession;
-	
+
 	@Override
 	public int insertNewGoods(Map newGoodsMap) throws DataAccessException {
-		sqlSession.insert("mapper.admin.goods.insertNewGoods",newGoodsMap);
-		return Integer.parseInt((String)newGoodsMap.get("goods_id"));
+		sqlSession.insert("mapper.admin.goods.insertNewGoods", newGoodsMap);
+		return Integer.parseInt((String) newGoodsMap.get("goods_id"));
 	}
-	
+
 	@Override
-	public void insertGoodsImageFile(List fileList)  throws DataAccessException {
-		for(int i=0; i<fileList.size();i++){
-			ImageFileVO imageFileVO=(ImageFileVO)fileList.get(i);
-			sqlSession.insert("mapper.admin.goods.insertGoodsImageFile",imageFileVO);
+	public void insertGoodsImageFile(List fileList) throws DataAccessException {
+		for (int i = 0; i < fileList.size(); i++) {
+			ImageFileVO imageFileVO = (ImageFileVO) fileList.get(i);
+			sqlSession.insert("mapper.admin.goods.insertGoodsImageFile", imageFileVO);
 		}
 	}
-	
+
 	@Override
-	public List<GoodsVO>selectNewGoodsList(Map condMap) throws DataAccessException {
-		ArrayList<GoodsVO>  goodsList=(ArrayList)sqlSession.selectList("mapper.admin.goods.selectNewGoodsList",condMap);
+	public List<GoodsVO> selectNewGoodsList(Map condMap) throws DataAccessException {
+		ArrayList<GoodsVO> goodsList = (ArrayList) sqlSession.selectList("mapper.admin.goods.selectNewGoodsList",
+				condMap);
 		return goodsList;
 	}
-	
+
 }
