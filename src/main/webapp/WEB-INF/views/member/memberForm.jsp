@@ -173,9 +173,16 @@
 						<td class="fixed_join">휴대폰번호</td>
 						<td><input size="30px" maxlength="11"
 							placeholder="-을 제외한 숫자  11자리를 입력하세요." type="text" name="phone"><br>
-							<br> <input type="checkbox" name="sms_valid_check" value = true
-							checked /> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.</td>
-					</tr>
+							<br> 
+							<c:choose> 
+					   <c:when test="${member_info.sms_valid_check}">
+					     <input type="checkbox"  name="sms_valid_check" value="true" checked /> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.
+						</c:when>
+						<c:otherwise>
+						  <input type="checkbox"  name="sms_valid_check" value="false"  /> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.
+						</c:otherwise>
+					 </c:choose></td>
+					</tr>	
 					<tr class="dot_line">
 						<td class="fixed_join">이메일<br>(e-mail)
 						</td>
@@ -194,9 +201,14 @@
 								<option value="empal.com">empal.com</option>
 								<option value="korea.com">korea.com</option>
 								<option value="freechal.com">freechal.com</option>
-						</select><br> <br> <input type="checkbox"
-							name="email_valid_check" value="true" checked /> 쇼핑몰에서 발송하는 e-mail을
-							수신합니다.</td>
+						</select><br> <br> <c:choose> 
+					   <c:when test="${member_info.email_valid_check}">
+					     <input type="checkbox" name="email_valid_check"  value="true" checked /> 쇼핑몰에서 발송하는 e-mail을 수신합니다.
+						</c:when>
+						<c:otherwise>
+						  <input type="checkbox" name="email_valid_check"  value="false"  /> 쇼핑몰에서 발송하는 e-mail을 수신합니다.
+						</c:otherwise>
+					 </c:choose></td>
 					</tr>
 					<tr class="dot_line">
 						<td class="fixed_join">주소</td>

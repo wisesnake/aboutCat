@@ -17,7 +17,6 @@ public class MemberDAOImpl implements MemberDAO {
 
 	public MemberVO login(Map loginMap) throws DataAccessException {
 		MemberVO member = (MemberVO) sqlSession.selectOne("mapper.member.login", loginMap);
-		System.out.println(member.getMember_id());
 		return member;
 	}
 
