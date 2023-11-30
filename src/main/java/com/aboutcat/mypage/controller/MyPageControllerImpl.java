@@ -133,32 +133,27 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		String  member_id=memberVO.getMember_id();
 		if(attribute.equals("member_birth")){
 			val=value.split(",");
-			memberMap.put("member_birth_y",val[0]);
-			memberMap.put("member_birth_m",val[1]);
-			memberMap.put("member_birth_d",val[2]);
-			memberMap.put("member_birth_gn",val[3]);
-		}else if(attribute.equals("tel")){
+			memberMap.put("birth_year",val[0]);
+			memberMap.put("birth_month",val[1]);
+			memberMap.put("birth_day",val[2]);
+			memberMap.put("birth_day_yinyang",val[3]);
+		}else if(attribute.equals("phone")){
 			val=value.split(",");
-			memberMap.put("tel1",val[0]);
-			memberMap.put("tel2",val[1]);
-			memberMap.put("tel3",val[2]);
-		}else if(attribute.equals("hp")){
-			val=value.split(",");
-			memberMap.put("hp1",val[0]);
-			memberMap.put("hp2",val[1]);
-			memberMap.put("hp3",val[2]);
-			memberMap.put("smssts_yn", val[3]);
+			val[0] = val[0].replace("-", "");
+			memberMap.put("phone",val[0]);
+			memberMap.put("sms_valid_check", val[1]);
+			System.out.println("phone number :" + val[0] + "sms_valid_check: " + val[1]);
 		}else if(attribute.equals("email")){
 			val=value.split(",");
-			memberMap.put("email1",val[0]);
-			memberMap.put("email2",val[1]);
-			memberMap.put("emailsts_yn", val[2]);
+			memberMap.put("member_email1",val[0]);
+			memberMap.put("member_email2",val[1]);
+			memberMap.put("email_valid_check", val[2]);
 		}else if(attribute.equals("address")){
 			val=value.split(",");
-			memberMap.put("zipcode",val[0]);
-			memberMap.put("roadAddress",val[1]);
-			memberMap.put("jibunAddress", val[2]);
-			memberMap.put("namujiAddress", val[3]);
+			memberMap.put("postcode",val[0]);
+			memberMap.put("address1_new",val[1]);
+			memberMap.put("address1_old", val[2]);
+			memberMap.put("address2", val[3]);
 		}else {
 			memberMap.put(attribute,value);	
 		}
