@@ -149,4 +149,39 @@ public class AdminGoodsControllerImpl extends BaseController implements AdminGoo
 		return resEntity;
 	}
 
+	@RequestMapping(value = "/modifyGoodsForm.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView modifyGoodsForm(@RequestParam("goods_id") int goods_id, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+
+		Map goodsMap = adminGoodsService.goodsDetail(goods_id);
+		mav.addObject("goodsMap", goodsMap);
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/modifyGoodsInfo.do", method = { RequestMethod.POST })
+	public ResponseEntity modifyGoodsInfo(@RequestParam("goods_id") String goods_id,
+			@RequestParam("attribute") String attribute, @RequestParam("value") String value,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// System.out.println("modifyGoodsInfo");
+
+		Map<String, String> goodsMap = new HashMap<String, String>();
+		goodsMap.put("goods_id", goods_id);
+		goodsMap.put(attribute, value);
+		adminGoodsService.modifyGoodsInfo(goodsMap);
+
+		String message = null;
+		ResponseEntity resEntity = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		message = "mod_success";
+		resEntity = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		return resEntity;
+	}
+
 }

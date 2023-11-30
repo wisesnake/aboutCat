@@ -103,7 +103,7 @@
 								<td><select name="goods_status">
 										<option value="bestgoods">베스트셀러</option>
 										<option value="recommendgoods">추천상품</option>
-										<option value="newgoods" selected>신간</option>
+										<option value="newgoods" selected>신상공양잉제품</option>
 										<option value="on_sale">판매중</option>
 										<option value="buy_out">품절</option>
 								</select></td>
