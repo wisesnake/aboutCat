@@ -195,15 +195,19 @@
 			</tbody>
 		</table>
 		<ul>
-			<li><a class="buy" href="javascript:fn_order_each_goods('${goods.goods_id }','${goods.goods_name }','${goods.goods_sell_price}','${goods.goods_image_fileName}');">구매하기 </a></li>
-			<li><a class="cart"	href="javascript:add_cart('${goods.goods_id }')">장바구니</a></li>
+
+			<li><a class="buy"
+				href="javascript:fn_order_each_goods('${goods.goods_id }','${goods.goods_name }','${goods.goods_sell_price}','${goods.goods_image_fileName}');">구매하기
+			</a></li>
+			<li><a class="cart"
+				href="javascript:add_cart('${goods.goods_id }')">장바구니</a></li>
 			<li><a class="wish" href="#">위시리스트</a></li>
 		</ul>
 	</div>
 
 
 
-<div class="clear"></div>
+	<div class="clear"></div>
 	<!-- 내용 들어 가는 곳 -->
 	<div id="container">
 		<ul class="tabs">
@@ -214,11 +218,11 @@
 		<div class="tab_container">
 			<div class="tab_content" id="tab1">
 				<h4>상품 소개</h4>
-			<%-- 	<p>${fn:replace(goods.goods_description)}</p> --%>
-		<c:forEach var="image" items="${imageList }">
-					<img 
+				<%-- 	<p>${fn:replace(goods.goods_description)}</p> --%>
+				<c:forEach var="image" items="${imageList }">
+					<img
 						src="${contextPath}/download.do?goods_id=${goods.goods_id}&fileName=${image.goods_image_fileName}">
-				</c:forEach> 
+				</c:forEach>
 			</div>
 			<div class="tab_content" id="tab1">
 

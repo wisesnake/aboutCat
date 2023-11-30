@@ -21,9 +21,7 @@ public class GoodsVO {
 	private String goods_description;
 	private String goods_status;
 	private String goods_keyword;
-	
+
 	private String goods_image_fileName;
-	
-	
-	
+
 }

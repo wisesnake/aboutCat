@@ -93,7 +93,7 @@
 						<h2>
 							<a
 								href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">${item.goods_name}</a>
-			<%-- 			</h2> <c:set var="goods_pub_date" value="${item.goods_published_date }" />
+							<%-- 			</h2> <c:set var="goods_pub_date" value="${item.goods_published_date }" />
 						<c:set var="arr" value="${fn:split(goods_pub_date,' ')}" />
 						<div class="writer_press">${item.goods_writer }저
 							|${item.goods_publisher }|
