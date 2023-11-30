@@ -205,6 +205,7 @@ function fn_order_all_cart_goods(){
 				    </c:when>
 			        <c:otherwise>
 			 <tr>       
+			 <strong><h1>일단 상품은 있습니다.</h1></strong>
                <form name="frm_order_all_cart">
 				      <c:forEach var="item" items="${myGoodsList }" varStatus="cnt">
 				       <c:set var="cart_goods_qty" value="${myCartList[cnt.count-1].cart_goods_qty}" />
@@ -212,7 +213,7 @@ function fn_order_all_cart_goods(){
 					<td><input type="checkbox" name="checked_goods"  checked  value="${item.goods_id }"  onClick="calcGoodsPrice(${item.goods_price },this)"></td>
 					<td class="goods_image">
 					<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
-						<img width="75" alt="" src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_image_fileName}"  />
+						<img width="75" alt="" src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&goods_image_fileName=${item.goods_image_fileName}"  />
 					</a>
 					</td>
 					<td>
@@ -239,7 +240,7 @@ function fn_order_all_cart_goods(){
 				         ${total_sales_price}원
 					</strong> </td>
 					<td>
-					      <a href="javascript:fn_order_each_goods('${item.goods_id }','${item.goods_title }','${item.goods_sales_price}','${item.goods_fileName}');">
+					      <a href="javascript:fn_order_each_goods('${item.goods_id }','${item.goods_name }','${item.goods_sell_price}','${item.goods_image_fileName}');">
 					       	<img width="75" alt=""  src="${contextPath}/resources/image/btn_order.jpg">
 							</a><br>
 					 	<a href="#"> 

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,18 +32,21 @@ public class CartControllerImpl extends BaseController implements CartController
 	private MemberVO memberVO;
 	
 	@RequestMapping(value="/myCartList.do" ,method = RequestMethod.GET)
-	public ModelAndView myCartMain(HttpServletRequest request, HttpServletResponse response)  throws Exception {
+	public String myCartMain(HttpServletRequest request, HttpServletResponse response)  throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
+		
 		HttpSession session=request.getSession();
 		MemberVO memberVO=(MemberVO)session.getAttribute("memberInfo");
 		System.out.println(memberVO);
+		
 		String member_id=memberVO.getMember_id();
 		cartVO.setMember_id(member_id);
+		
 		Map<String ,List> cartMap=cartService.myCartList(cartVO);
 		session.setAttribute("cartMap", cartMap);//장바구니 목록 화면에서 상품 주문 시 사용하기 위해서 장바구니 목록을 세션에 저장한다.
-//		mav.addObject("cartMap", cartMap);
-		return mav;
+		
+		
+		return viewName;
 	}
 	@RequestMapping(value="/addGoodsInCart.do" ,method = RequestMethod.POST,produces = "application/text; charset=utf8")
 	public  @ResponseBody String addGoodsInCart(@RequestParam("goods_id") int goods_id,
