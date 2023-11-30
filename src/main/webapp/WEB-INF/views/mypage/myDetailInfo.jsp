@@ -60,27 +60,6 @@
     }
 
    
-   window.onload=function()
-    {
-      selectBoxInit();
-    }
-
-    function selectBoxInit(){
-    
-     var phone='${memberInfo.phone }';
-     var selPhone = document.getElementById('phone');
-     var optionPhone = selPhone.options;
-     var val;
-
-     for(var i=0; i<optionPhone.length;i++){
-       val = optionPhone[i].value;
-       if(phone == val){
-    	   optionPhone[i].selected= true;
-        break;
-       }
-     }  
-     
-   }
 
 
 function fn_modify_member_info(attribute){
@@ -101,10 +80,14 @@ function fn_modify_member_info(attribute){
 			}
 			
 		}else if(attribute=='member_birth'){
-			var birth_year=frm_mod_member.birth_year;
-			var birth_month=frm_mod_member.birth_month;
-			var birth_day=frm_mod_memberbirth_day;
-			var birth_day_yinyang=frm_mod_member.birth_day_yinyang;
+			var birth_year=frm_mod_member.
+				birth_year;
+			var birth_month=frm_mod_member.
+				birth_month;
+			var birth_day=frm_mod_member.
+				birth_day;
+			var birth_day_yinyang=frm_mod_member.
+				birth_day_yinyang;
 			
 			for(var i=0; birth_year.length;i++){
 			 	if(birth_year[i].selected){
@@ -135,7 +118,7 @@ function fn_modify_member_info(attribute){
 			}
 			//alert("생년 양음년 "+value_gn);
 			value=+value_y+","+value_m+","+value_d+","+value_gn;
-		
+			
 		
 		}else if(attribute=='phone'){
 			var phone=frm_mod_member.phone;
@@ -143,7 +126,8 @@ function fn_modify_member_info(attribute){
 			
 			value_phone=phone.value;
 			value_sms_valid_check=sms_valid_check.checked;
-			value=value_hp1 + value_sms_valid_check;
+			value=value_phone + "," + value_sms_valid_check;
+		
 		}else if(attribute=='email'){
 			var member_email1=frm_mod_member.member_email1;
 			var member_email2=frm_mod_member.member_email2;
@@ -289,13 +273,13 @@ function fn_modify_member_info(attribute){
 					</select>일 <span style="padding-left:50px"></span>
 					   <c:choose>
 					    <c:when test="${memberInfobirth_day_yinyang=='true' }"> 
-					  <input type="radio" name="birth_day_yinyang" value="true" checked />양력
+					  <input type="radio" name="birth_day_yinyang" value="1" checked />양력
 						<span style="padding-left:20px"></span> 
-						<input type="radio"  name="birth_day_yinyang" value="false" />음력
+						<input type="radio"  name="birth_day_yinyang" value="0" />음력
 						</c:when>
 						<c:otherwise>
-						  <input type="radio" name="birth_day_yinyang" value="true" />양력
-						  <input type="radio"  name="birth_day_yinyang" value="false" checked  />음력
+						  <input type="radio" name="birth_day_yinyang" value="1" />양력
+						  <input type="radio"  name="birth_day_yinyang" value="0" checked  />음력
 						</c:otherwise>
 						</c:choose>
 					</td>
@@ -307,18 +291,18 @@ function fn_modify_member_info(attribute){
 				<tr class="dot_line">
 					<td class="fixed_join">휴대폰번호</td>
 					<td>
-					 <input type="text"name="phone"  size=30 value="${memberInfo.phone }"><br> <br>
+					 <input type="text" name="phone"  size=30 value="${memberInfo.phone }"><br> <br>
 					 <c:choose> 
 					   <c:when test="${memberInfo.sms_valid_check=='true' }">
-					     <input type="checkbox"  name="sms_valid_check" value="true" checked /> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.
+					     <input type="checkbox"  name="sms_valid_check" value="1" checked /> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.
 						</c:when>
 						<c:otherwise>
-						  <input type="checkbox"  name="sms_valid_check" value="false"  /> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.
+						  <input type="checkbox"  name="sms_valid_check" value="0"  /> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.
 						</c:otherwise>
 					 </c:choose>	
 				    </td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('hp')" />
+					  <input type="button" value="수정하기" onClick="fn_modify_member_info('phone')" />
 					</td>	
 				</tr>
 				<tr class="dot_line">
