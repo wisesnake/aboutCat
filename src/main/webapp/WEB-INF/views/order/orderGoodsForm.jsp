@@ -561,7 +561,7 @@ function fn_process_pay_order(){
 			  <tr class="dot_line">
 				<td ><h2>이메일</h2></td>
 				<td>
-				 <input  type="text" value="${orderer.email1}@${orderer.email2}" size="15" />
+				 <input  type="text" value="${orderer.member_email1}@${orderer.member_email2}" size="15" />
 				</td>
 			  </tr>
 		   </tbody>

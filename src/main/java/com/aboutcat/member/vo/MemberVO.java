@@ -47,8 +47,8 @@ public class MemberVO {
 
 	private boolean member_deleted;
 
-	public String getPhone() {
-		return phone.substring(0, 3) + "-" + phone.substring(3, 7) + "-" + phone.substring(7);
-	}
+//	public String getPhone() {
+//		return phone.substring(0, 3) + "-" + phone.substring(3, 7) + "-" + phone.substring(7);
+//	}
 
 }
