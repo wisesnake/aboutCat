@@ -16,7 +16,7 @@ STS 3.9.9
 <JDK버전>
 JDK 11
 
-<DB>
+<DataBase>
 Oracle DB
 
 <관리 Tool>
