@@ -10,14 +10,18 @@
  <운영체제>
 Window 10
 
+
  <통합개발환경 IDE>
 STS 3.9.9
+
 
  <JDK버전>
 JDK 11
 
+
  <DataBase>
 Oracle DB
+
 
  <관리 Tool>
 Maven
