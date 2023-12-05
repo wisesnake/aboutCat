@@ -66,7 +66,6 @@
 
 	function fn_overlapped() {
 		var _id = $("#_member_id").val();
-		alert($("#_member_id").val());
 		if (_id == '') {
 			alert("ID를 입력하세요");
 			return;
@@ -98,11 +97,75 @@
 			}
 		}); //end ajax	 
 	}
+
+
+
+	var compare_result = false;
+	
+	function fn_compare_pwd() {
+	var pwd1 = $('#member_pw').val();
+	var pwd2 = $('#member_pw_confrim').val();
+	var s_result = $('s_result').val();
+	
+	if(pwd1 == pwd2){
+		compare_result = true;
+		$('#s_result').text('비밀번호가 일치합니다.')
+	}else{
+		compare_result = false;
+		$('#s_result').text('비밀번호가 일치하지 않습니다.')
+		
+	}
+	}
+
+
+	
+	
+	function updateEmail2(selectElement) {
+	    var memberEmail2Input = document.getElementsByName("member_email2")[0];
+
+	    if (selectElement.value === "non") {
+	        // 직접입력을 선택한 경우
+	        memberEmail2Input.value = "";
+	        memberEmail2Input.disabled = false; // 입력 가능하도록 활성화
+	    } else {
+	        // 다른 옵션을 선택한 경우
+	        memberEmail2Input.value = selectElement.value;
+	        memberEmail2Input.disabled = true; // 입력 불가능하도록 비활성화
+	    }
+	}
+
+	function fn_delete_member(member_id ,member_deleted){
+		var frm_mod_member=document.frm_mod_member;
+		var i_member_id = document.createElement("input");
+		var i_member_deleted = document.createElement("input");
+	    
+		
+	    i_member_id.name="member_id";
+	    i_member_deleted.name="member_deleted";
+	    i_member_id.value=member_id;
+	    i_member_deleted.value=member_deleted;
+	    
+	    frm_mod_member.appendChild(i_member_id);
+	    frm_mod_member.appendChild(i_member_deleted);
+	    frm_mod_member.method="post";
+	    frm_mod_member.action="/aboutcat/admin/member/deleteMember.do";
+	    frm_mod_member.submit();
+	}
+	</script>
+	
+	
 </script>
+
+
+
+
+
+
+
 </head>
 <body>
 	<h3>필수입력사항</h3>
-	<form action="${contextPath}/member/addMember.do" method="post">
+	<form action="${contextPath}/member/addMember.do" method="post" id="">
 		<div id="detail_table">
 			<table>
 				<tbody>
@@ -114,7 +177,12 @@
 					</tr>
 					<tr class="dot_line">
 						<td class="fixed_join">비밀번호</td>
-						<td><input name="member_pw" type="password" size="20" /></td>
+						<td><input name="member_pw" id="member_pw" placeholder="비밀번호 입력" type="password" size="20" /></td>
+					</tr>
+					<tr class="dot_line">
+						<td class="fixed_join">비밀번호확인</td>
+						<td><input name="member_pw_confrim" id="member_pw_confrim" placeholder="비밀번호 확인" type="password" onkeyup="fn_compare_pwd()" size="20"/>
+						<span style = "font-size:10px" id="s_result">비밀번호가 일치하지 않습니다.</span></td>
 					</tr>
 					<tr class="dot_line">
 						<td class="fixed_join">이름</td>
@@ -180,8 +248,8 @@
 						<td class="fixed_join">이메일<br>(e-mail)
 						</td>
 						<td><input size="10px" type="text" name="member_email1" /> @
-							<input size="10px" type="text" name="member_email2" /> <select
-							name="member_email2" onChange="" title="직접입력">
+							<input size="10px" type="text" name="member_email2" /> 
+							<select name="select_member_email2" onChange="updateEmail2(this)"  title="직접입력">
 								<option value="non">직접입력</option>
 								<option value="hanmail.net">hanmail.net</option>
 								<option value="naver.com">naver.com</option>
@@ -219,7 +287,7 @@
 			<br> <br>
 			<table align=center>
 				<tr>
-					<td><input type="submit" value="회원 가입"> <input	type="reset" value="다시입력"></td>
+					<td><input type="submit" value="회원가입" > <input	type="reset" value="다시입력"></td>
 				</tr>
 			</table>
 		</div>

@@ -17,7 +17,6 @@ public class MemberDAOImpl implements MemberDAO {
 
 	public MemberVO login(Map loginMap) throws DataAccessException {
 		MemberVO member = (MemberVO) sqlSession.selectOne("mapper.member.login", loginMap);
-		System.out.println(member.getMember_id());
 		return member;
 	}
 
@@ -28,9 +27,7 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public String selectOverlappedID(String id) throws DataAccessException {
-		System.out.println("memberService" + id);
 		String result = sqlSession.selectOne("mapper.member.selectOverlappedID", id);
-		System.out.println(result + "아이디 중복 확인하는 spl문작성하는  dao");
 		return result;
 	}
 	
