@@ -27,8 +27,11 @@ Maven
 
 <프로젝트 기술 스택>
 
+
 Frontend : HTML, CSS, JavaScript, AJAX, JSP
+
 Backend : Spring
+
 Database : Oracle Database
 
 
