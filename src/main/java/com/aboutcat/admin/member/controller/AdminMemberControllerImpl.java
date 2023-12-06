@@ -122,8 +122,8 @@ public class AdminMemberControllerImpl extends BaseController implements AdminMe
 			memberMap.put("birth_day_yinyang",val[3]);
 		}else if(mod_type.equals("phone")){
 			val=value.split(",");
-			val[0] = val[0].replace("-", "");
-			System.out.println("phone number :" + val[0]);
+//			val[0] = val[0].replace("-", "");
+//			System.out.println("phone number :" + val[0]);
 			memberMap.put("phone",val[0]);
 			memberMap.put("sms_valid_check", val[1]);
 		}else if(mod_type.equals("email")){
