@@ -308,7 +308,7 @@ function fn_modify_member_info(attribute){
 				<tr class="dot_line">
 					<td class="fixed_join">휴대폰번호</td>
 					<td>
-					 <input type="text" name="phone" size=30 value="${memberInfo.phone }"><br> <br>
+					 <input type="text" name="phone"  size=30 value="${memberInfo.phone }"><br> <br>
 					 <c:choose> 
 					   <c:when test="${memberInfo.sms_valid_check=='true' }">
 					     <input type="checkbox"  name="sms_valid_check" value="1" checked /> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.
