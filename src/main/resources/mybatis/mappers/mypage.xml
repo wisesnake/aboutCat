@@ -97,11 +97,11 @@
 				</if>
 			</if>
 			
-			<if test=" email1!='' and email1!=null">
-				email1=#{email1},
+			<if test=" member_email1!='' and member_email1!=null">
+				member_email1=#{member_email1},
 			</if>
-			<if test=" email2!='' and email2!=null">
-				email2=#{email2},
+			<if test=" member_email2!='' and member_email2!=null">
+				member_email2=#{member_email2},
 			</if>
 			
 
@@ -113,7 +113,10 @@
 					email_valid_check=0,
 				</if>
 			</if>
-
+			
+			<if test=" birth_day_yinyang!='' and birth_day_yinyang!=null">
+				birth_day_yinyang=#{birth_day_yinyang},
+			</if>
 
 
 			<if test=" postcode!='' and postcode!=null">

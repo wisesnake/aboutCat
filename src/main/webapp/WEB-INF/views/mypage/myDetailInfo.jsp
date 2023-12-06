@@ -59,6 +59,22 @@
         }).open();
     }
 
+    
+    function updateEmail2(selectElement) {
+	    var memberEmail2Input = document.getElementsByName("member_email2")[0];
+
+	    if (selectElement.value === "non") {
+	        // 직접입력을 선택한 경우
+	        memberEmail2Input.value = "";
+	        memberEmail2Input.disabled = false; // 입력 가능하도록 활성화
+	    } else {
+	        // 다른 옵션을 선택한 경우
+	        memberEmail2Input.value = selectElement.value;
+	        memberEmail2Input.disabled = true; // 입력 불가능하도록 비활성화
+	    }
+	}
+
+    
    
 
 
@@ -136,8 +152,11 @@ function fn_modify_member_info(attribute){
 			value_member_email1=member_email1.value;
 			value_member_email2=member_email2.value;
 			value_email_valid_check=email_valid_check.checked;
+			
 			value=value_member_email1+","+value_member_email2+","+value_email_valid_check;
 			//alert(value);
+			
+			
 		}else if(attribute=='address'){
 			var postcode=frm_mod_member.postcode;
 			var address1_new=frm_mod_member.address1_new;
@@ -221,8 +240,7 @@ function fn_modify_member_info(attribute){
 					   <input type="radio" name="member_gender" value="101" checked />남성
 					    </c:when>
 					    <c:otherwise>
-					      <input type="radio" name="member_gender" value="102"  checked />
-						   여성 <span style="padding-left:30px"></span>
+					      <input type="radio" name="member_gender" value="102"  checked /> 여성 <span style="padding-left:30px"></span>
 					      <input type="radio" name="member_gender" value="101"  />남성
 					   </c:otherwise>
 					   </c:choose>
@@ -272,13 +290,12 @@ function fn_modify_member_info(attribute){
 					   	</c:forEach>
 					</select>일 <span style="padding-left:50px"></span>
 					   <c:choose>
-					    <c:when test="${memberInfobirth_day_yinyang=='true' }"> 
-					  <input type="radio" name="birth_day_yinyang" value="1" checked />양력
-						<span style="padding-left:20px"></span> 
-						<input type="radio"  name="birth_day_yinyang" value="0" />음력
+					     <c:when test="${member_info.birth_day_yinyang == 1}"> 
+						  <input type="radio" name="birth_day_yinyang" value="1" checked />양력 <span style="padding-left:20px"></span> 
+					      <input type="radio"  name="birth_day_yinyang" value="0" />음력
 						</c:when>
 						<c:otherwise>
-						  <input type="radio" name="birth_day_yinyang" value="1" />양력
+						  <input type="radio" name="birth_day_yinyang" value="1" />양력 <span style="padding-left:20px"></span>
 						  <input type="radio"  name="birth_day_yinyang" value="0" checked  />음력
 						</c:otherwise>
 						</c:choose>
@@ -291,7 +308,7 @@ function fn_modify_member_info(attribute){
 				<tr class="dot_line">
 					<td class="fixed_join">휴대폰번호</td>
 					<td>
-					 <input type="text" name="phone"  size=30 value="${memberInfo.phone }"><br> <br>
+					 <input type="text" name="phone" size=30 value="${memberInfo.phone }"><br> <br>
 					 <c:choose> 
 					   <c:when test="${memberInfo.sms_valid_check=='true' }">
 					     <input type="checkbox"  name="sms_valid_check" value="1" checked /> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.
@@ -308,8 +325,9 @@ function fn_modify_member_info(attribute){
 				<tr class="dot_line">
 					<td class="fixed_join">이메일<br>(e-mail)</td>
 					<td>
-					   <input type="text" name="member_email1" size=10 value="${memberInfo.member_email1 }" /> @ <input type="text" size=10  name="member_email2" value="${memberInfo.member_email2 }" /> 
-					   <select name="select_member_email2" onChange=""  title="직접입력">
+					   <input type="text" name="member_email1" size=10 value="${memberInfo.member_email1 }" /> @ 
+					   <input type="text" size=10  name="member_email2" value="${memberInfo.member_email2 }" /> 
+					   <select name="select_member_email2" onChange="updateEmail2(this)"  title="직접입력">
 							<option value="non">직접입력</option>
 							<option value="hanmail.net">hanmail.net</option>
 							<option value="naver.com">naver.com</option>

@@ -126,14 +126,14 @@
 	    if (selectElement.value === "non") {
 	        // 직접입력을 선택한 경우
 	        memberEmail2Input.value = "";
-	        memberEmail2Input.disabled = false; // 입력 가능하도록 활성화
+	        memberEmail2Input.removeAttribute("readonly"); // 입력 가능하도록 readonly 제거
 	    } else {
 	        // 다른 옵션을 선택한 경우
 	        memberEmail2Input.value = selectElement.value;
-	        memberEmail2Input.disabled = true; // 입력 불가능하도록 비활성화
+	        memberEmail2Input.setAttribute("readonly", true); // 입력 불가능하도록 readonly 속성 추가
 	    }
 	}
-
+	
 	function fn_delete_member(member_id ,member_deleted){
 		var frm_mod_member=document.frm_mod_member;
 		var i_member_id = document.createElement("input");
@@ -151,6 +151,28 @@
 	    frm_mod_member.action="/aboutcat/admin/member/deleteMember.do";
 	    frm_mod_member.submit();
 	}
+	
+	
+    function setcheckSms() {
+        if (document.getElementById("sms_valid_checkBox").checked) {
+            document.getElementById("h_sms_valid_check").value = "true";
+        } else {
+            document.getElementById("h_sms_valid_check").value = "false";
+        }
+    }
+    
+    function setcheckEmail () {
+        if (document.getElementById("email_valid_checkBox").checked) {
+            document.getElementById("h_email_valid_check").value = "true";
+        } else {
+            document.getElementById("h_email_valid_check").value = "false";
+        }
+    }
+    
+  
+	
+	
+	
 	</script>
 	
 	
@@ -232,23 +254,26 @@
 										</c:otherwise>
 									</c:choose>
 								</c:forEach>
-						</select>일 <span style="padding-left: 50px"></span> <input type="radio"
-							name="birth_day_yinyang" value=true checked />양력 <span
-							style="padding-left: 50px"></span> <input type="radio"
-							name="birth_day_yinyang" value=false />음력</td>
+						</select>일 <span style="padding-left: 50px"></span> 
+						<input type="radio" name="birth_day_yinyang" value=true checked />양력 
+						<span style="padding-left: 50px"></span> 
+						<input type="radio"	name="birth_day_yinyang" value=false />음력</td>
 					</tr>
 					<tr class="dot_line">
 						<td class="fixed_join">휴대폰번호</td>
 						<td><input size="30px" maxlength="11"
 							placeholder="-을 제외한 숫자  11자리를 입력하세요." type="text" name="phone"><br>
-							<br> <input type="checkbox" name="sms_valid_check" value = true
-							checked /> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.</td>
+							<!-- <br> <input type="checkbox" name="sms_valid_check" value = true	checked /> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.</td> -->
+							<br><input type="checkbox"  id="sms_valid_checkBox" onClick="setcheckSms()" checked />쇼핑몰에서 발송하는 SMS 소식을 수신합니다.
+							<input type="hidden" name="sms_valid_check" id="h_sms_valid_check" value="" /></td>
+							
+					
 					</tr>
 					<tr class="dot_line">
 						<td class="fixed_join">이메일<br>(e-mail)
 						</td>
 						<td><input size="10px" type="text" name="member_email1" /> @
-							<input size="10px" type="text" name="member_email2" /> 
+							<input size="10px" type="text" name="member_email2" value=""/> 
 							<select name="select_member_email2" onChange="updateEmail2(this)"  title="직접입력">
 								<option value="non">직접입력</option>
 								<option value="hanmail.net">hanmail.net</option>
@@ -262,10 +287,15 @@
 								<option value="empal.com">empal.com</option>
 								<option value="korea.com">korea.com</option>
 								<option value="freechal.com">freechal.com</option>
-						</select><br> <br> <input type="checkbox"
-							name="email_valid_check" value="true" checked /> 쇼핑몰에서 발송하는 e-mail을
-							수신합니다.</td>
+						</select>
+						<!-- <br> <br> <input type="checkbox" name="email_valid_check" value="true" checked /> 쇼핑몰에서 발송하는 e-mail을 수신합니다.</td> -->
+						<br><input type="checkbox"  id="email_valid_checkBox" onClick="setcheckEmail()" checked /> 쇼핑몰에서 발송하는 e-mail을 수신합니다.
+							<input type="hidden" name="email_valid_check" id="h_email_valid_check" value="" /></td>
+					
+					
 					</tr>
+					
+					
 					<tr class="dot_line">
 						<td class="fixed_join">주소</td>
 						<td><input type="text" id="postcode" name="postcode"
