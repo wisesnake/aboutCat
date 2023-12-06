@@ -336,7 +336,8 @@ function fn_delete_member(member_id ,member_deleted){
 				<tr class="dot_line">
 					<td class="fixed_join">이메일(e-mail)</td>
 					<td>
-					   <input type="text" name="member_email1" size=12 value="${member_info.member_email1 }" /> <input type="text" size=14  name="member_email2" value="${member_info.member_email2 }" /> 
+					   <input type="text" name="member_email1" size=12 value="${member_info.member_email1 }" /> 
+					   <input type="text" size=14  name="member_email2" value="${member_info.member_email2 }" /> 
 					   <select name="select_member_email2" onChange="updateEmail2(this)"  title="직접입력">
 							<option value="non">직접입력</option>
 							<option value="@hanmail.net">hanmail.net</option>
