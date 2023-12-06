@@ -24,27 +24,28 @@
 		<div id="carousel_inner">
 			<ul id="carousel_ul">
 				<c:choose>
-					<c:when test="${ empty goodsList  }">
+					<c:when test="${ List.goods_status eq 'newgoods'  }">
 						<li>
 							<div id="book">
-								<a><h1>제품이없습니다.</h1></a>
+								<a><h1>새로운 상품이 제품이없습니다.</h1></a>
 							</div>
 						</li>
 					</c:when>
 					<c:otherwise>
 						<c:forEach var="item" items="${list}">
-							<li>
+						 <c:if test="${item.goods_status eq 'newgoods'}">
+							<li>새로운 상품
 								<div id="book">
 									<a
 										href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id}">
 										<img width="75" alt=""
 										src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_image_fileName}">
 									</a>
-									<div class="title">${item.goods_name}</div>
+					<%-- 				<div class="title">${item.goods_name}</div> --%>
 									<div class="title">
 										<a
 											href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
-											${item.goods_title} </a>
+											${item.goods_name} </a>
 									</div>
 									<div class="price">
 										<span> <fmt:formatNumber value="${item.goods_price}"
@@ -56,6 +57,7 @@
 									</div>
 								</div>
 							</li>
+							</c:if>
 						</c:forEach>
 						<li></li>
 					</c:otherwise>

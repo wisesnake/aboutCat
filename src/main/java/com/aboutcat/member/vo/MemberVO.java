@@ -47,5 +47,6 @@ public class MemberVO {
 
 	private boolean member_deleted;
 
+	
 
 }
