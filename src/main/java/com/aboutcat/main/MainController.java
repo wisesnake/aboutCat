@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.aboutcat.common.base.BaseController;
 import com.aboutcat.goods.service.GoodsService;
 import com.aboutcat.goods.vo.GoodsVO;
-import com.aboutcat.member.vo.MemberVO;
 
 @Controller("mainController")
 @EnableAspectJAutoProxy
@@ -29,12 +28,6 @@ public class MainController extends BaseController {
 	@RequestMapping(value = "/main/main.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		MemberVO memberVO = new MemberVO();
-//	      memberVO.setMember_id("admin");
-//	      HttpSession session= request.getSession();
-//	      session=request.getSession();
-//	        session.setAttribute("isLogOn", true);
-//	        session.setAttribute("memberInfo",memberVO);
 		HttpSession session = request.getSession();
 		session = request.getSession();
 		session.setAttribute("side_menu", "main_menu");
