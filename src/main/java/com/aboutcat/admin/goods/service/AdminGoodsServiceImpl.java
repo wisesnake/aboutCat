@@ -15,28 +15,27 @@ import com.aboutcat.goods.vo.GoodsVO;
 import com.aboutcat.goods.vo.ImageFileVO;
 
 @Service("adminGoodsService")
-@Transactional(propagation = Propagation.REQUIRED)
-public class AdminGoodsServiceImpl implements AdminGoodsService {
+@Transactional(propagation=Propagation.REQUIRED)
+public class AdminGoodsServiceImpl implements AdminGoodsService{
 
 	@Autowired
 	private AdminGoodsDAO adminGoodsDAO;
-
+	
 	@Override
-	public int addNewGoods(Map newGoodsMap) throws Exception {
+	public int addNewGoods(Map newGoodsMap) throws Exception{
 		int goods_id = adminGoodsDAO.insertNewGoods(newGoodsMap);
-		ArrayList<ImageFileVO> imageFileList = (ArrayList) newGoodsMap.get("imageFileList");
-		for (ImageFileVO imageFileVO : imageFileList) {
+		ArrayList<ImageFileVO> imageFileList = (ArrayList)newGoodsMap.get("imageFileList");
+		for(ImageFileVO imageFileVO : imageFileList) {
 			imageFileVO.setGoods_id(goods_id);
 		}
 		adminGoodsDAO.insertGoodsImageFile(imageFileList);
 		return goods_id;
 	}
-
+	
 	@Override
-	public List<GoodsVO> listNewGoods(Map condMap) throws Exception {
+	public List<GoodsVO> listNewGoods(Map condMap) throws Exception{
 		return adminGoodsDAO.selectNewGoodsList(condMap);
 	}
-
 	
 	@Override
 	public void addNewGoodsImage(List imageFileList) throws Exception{
@@ -57,6 +56,16 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 	public void modifyGoodsInfo(Map goodsMap) throws Exception{
 		adminGoodsDAO.updateGoodsInfo(goodsMap);
 		
+	}
+	
+	@Override
+	public void modifyGoodsImage(List<ImageFileVO> imageFileList) throws Exception{
+		adminGoodsDAO.updateGoodsImage(imageFileList); 
+	}
+	
+	@Override
+	public void removeGoodsImage(int goods_image_id) throws Exception{
+		adminGoodsDAO.deleteGoodsImage(goods_image_id);
 	}
 	
 	
