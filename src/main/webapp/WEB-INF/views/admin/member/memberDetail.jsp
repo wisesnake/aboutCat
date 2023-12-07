@@ -298,15 +298,15 @@ function fn_delete_member(member_id ,member_deleted){
 					   <br>
 					   <br>
 					   <c:choose>
-					    <c:when test="${member_info.birth_day_yinyang}"> 
-					  <input type="radio" name="birth_day_yinyang" value="true" checked />양력
+					    <c:when test="${member_info.birth_day_yinyang == 1}"> 
+					  <input type="radio" name="birth_day_yinyang" value="1" checked />양력
 						&nbsp;&nbsp;&nbsp; 
-						<input type="radio"  name="birth_day_yinyang" value="false" />음력
+						<input type="radio"  name="birth_day_yinyang" value="0" />음력
 						</c:when>
 						<c:otherwise>
-						  <input type="radio" name="birth_day_yinyang" value="true" />양력
+						  <input type="radio" name="birth_day_yinyang" value="1" />양력
 						   &nbsp;&nbsp;&nbsp; 
-						<input type="radio"  name="birth_day_yinyang" value="false" checked  />음력
+						<input type="radio"  name="birth_day_yinyang" value="0" checked  />음력
 						</c:otherwise>
 						</c:choose>
 					</td>
