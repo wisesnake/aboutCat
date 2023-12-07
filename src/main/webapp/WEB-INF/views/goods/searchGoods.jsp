@@ -11,18 +11,19 @@
 	pageContext.setAttribute("br", "<br/>"); //br 태그
 %>
 <head>
-<title>검색 도서 목록 페이지</title>
+<title>검색 페이지</title>
+
+
 </head>
 <body>
 	<hgroup>
-		<h1>뭐쓰지</h1>
-		<h2>오늘의 상품</h2>
+		<h2 style="font-size:3ex; color:red;">오늘의 상품</h2>
 	</hgroup>
 	<section id="new_book">
 		<h3>신상품</h3>
 		<div id="left_scroll">
 			<a href='javascript:slide("left");'>
-				<%-- <img src="${contextPath}/resources/image/left.gif"> --%>
+				<img src="${contextPath}/resources/image/left.gif">
 			</a>
 		</div>
 		<div id="carousel_inner">
@@ -41,10 +42,10 @@
 								<div id="book">
 									<a
 										href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id}">
-										<img width="75" alt=""
+										<img width="100" alt=""
 										src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_image_fileName}">
 									</a>
-									<div class="sort">[뭐라씀]</div>
+									<!-- <div class="sort">[뭐라씀]</div> -->
 									<div class="title">
 										<a
 											href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
@@ -72,7 +73,7 @@
 		</div>
 		<div id="right_scroll">
 			<a href='javascript:slide("right");'>
-				<%-- <img  src="${contextPath}/resources/image/right.gif"> --%>
+				<img  src="${contextPath}/resources/image/right.gif"> 
 			</a>
 		</div>
 		<input id="hidden_auto_slide_seconds" type="hidden" value="0">
@@ -84,8 +85,6 @@
 		<ul>
 			<li><a class="active" href="#">인기순</a></li>
 			<li><a href="#">최신순</a></li>
-			<li><a style="border: currentColor; border-image: none;"
-				href="#">뭐씀</a></li>
 		</ul>
 	</div>
 	<table id="list_view">
@@ -94,7 +93,7 @@
 				<tr>
 					<td class="goods_image"><a
 						href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id}">
-							<img width="75" alt=""
+							<img width="100" alt=""
 							src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_image_fileName}">
 					</a></td>
 					<td class="goods_description">

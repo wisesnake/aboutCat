@@ -127,13 +127,15 @@
 		formObj.method = "post";
 		formObj.action = "${contextPath}/order/orderEachGoods.do";
 		formObj.submit();
+	
+		
 	}
 </script>
 </head>
 <body>
 	<hgroup>
-		<h1>이게 뭐라고해야하나...</h1>
-		<h2>ㅇㅇ &gt; ㄴㄴ &gt; ㅊㅊ</h2>
+		<h1 style="font-size: 3ex;">상품 상세 페이지</h1>
+		<h2 style="font-size: 2ex;"> <a href="${contextPath}/main/main.do">모든 상품 보기</a> &gt; <a href="${contextPath}/goods/keyword.do?keyword=${goods.goods_keyword}"> ${goods.goods_keyword} </a> </h2>
 		<h3>${goods.goods_name}</h3>
 	</hgroup>
 	<div id="goods_image">

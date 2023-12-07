@@ -14,7 +14,9 @@
 <title>키워드(keyword)</title>
 </head>
 <body>
-
+	<hgroup>
+		<h2 style="font-size:3ex; color:red;">오늘의 상품</h2>
+	</hgroup>
 	<section id="new_book">
 		<h3>새로나온 책</h3>
 		<div id="left_scroll">
@@ -34,7 +36,7 @@
 					<c:otherwise>
 						<c:forEach var="item" items="${list}">
 						 <c:if test="${item.goods_status eq 'newgoods'}">
-							<li>새로운 상품
+							<li>
 								<div id="book">
 									<a
 										href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id}">
@@ -76,10 +78,9 @@
 	<div class="clear"></div>
 	<div id="sorting">
 		<ul>
-			<li><a class="active" href="#">베스트 셀러</a></li>
-			<li><a href="#">최신 출간</a></li>
-			<li><a style="border: currentColor; border-image: none;"
-				href="#">최근 등록</a></li>
+			<li><a class="active" href="#">인기순</a></li>
+			<li><a href="#">최신순</a></li>
+
 		</ul>
 	</div>
 	<table id="list_view">
