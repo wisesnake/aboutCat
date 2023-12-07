@@ -22,14 +22,14 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public void insertNewMember(MemberVO memberVO) throws DataAccessException {
+		System.out.println("디에이오에 맴버브이오" + memberVO);
+		
 		sqlSession.insert("mapper.member.insertNewMember", memberVO);
 	}
 
 	@Override
 	public String selectOverlappedID(String id) throws DataAccessException {
-		System.out.println("memberService" + id);
 		String result = sqlSession.selectOne("mapper.member.selectOverlappedID", id);
-		System.out.println(result + "아이디 중복 확인하는 spl문작성하는  dao");
 		return result;
 	}
 	

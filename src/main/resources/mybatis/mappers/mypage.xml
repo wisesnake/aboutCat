@@ -113,7 +113,10 @@
 					email_valid_check=0,
 				</if>
 			</if>
-
+			
+			<if test=" birth_day_yinyang!='' and birth_day_yinyang!=null">
+				birth_day_yinyang=#{birth_day_yinyang},
+			</if>
 
 
 			<if test=" postcode!='' and postcode!=null">
