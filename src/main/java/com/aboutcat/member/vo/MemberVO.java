@@ -41,7 +41,7 @@ public class MemberVO {
 
 	private int birth_day;
 
-	private boolean birth_day_yinyang;
+	private int birth_day_yinyang;
 
 	private Date member_add_date;
 
