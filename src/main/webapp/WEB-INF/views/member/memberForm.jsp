@@ -9,6 +9,10 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"> </script>
 <script>
+	window.onload = function(){
+		alert("${contextPath}");
+	}
+
 	function execDaumPostcode() {
 		new daum.Postcode(
 				{
@@ -62,6 +66,18 @@
 
 					}
 				}).open();
+	}
+	
+	function setEmailInput(optionVal){
+		const emailDOM = document.getElementById("emailDomain");
+		emailDOM.value = optionVal.value;
+		const v_emailDOM = emailDOM.value;
+		
+		if(v_emailDOM != ""){
+		emailDOM.readOnly = true;
+		}else{
+		emailDOM.readOnly = false;
+		}
 	}
 
 	function fn_overlapped() {
@@ -187,9 +203,9 @@
 						<td class="fixed_join">이메일<br>(e-mail)
 						</td>
 						<td><input size="10px" type="text" name="member_email1" /> @
-							<input size="10px" type="text" name="member_email2" /> <select
-							name="member_email2" onChange="" title="직접입력">
-								<option value="non">직접입력</option>
+							<input size="10px" type="text" name="member_email2" id="emailDomain" /> <select
+							name="member_email2" onChange="setEmailInput(this)" title="직접입력">
+								<option value="">직접입력</option>
 								<option value="hanmail.net">hanmail.net</option>
 								<option value="naver.com">naver.com</option>
 								<option value="yahoo.co.kr">yahoo.co.kr</option>

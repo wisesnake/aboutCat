@@ -72,7 +72,7 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 	
 	@Override
 	@RequestMapping(value="/addMember.do" ,method = RequestMethod.POST)
-	public ResponseEntity addMember(@ModelAttribute("memberVO") MemberVO _memberVO,
+	public ResponseEntity addMember(MemberVO _memberVO,
 			                HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println(_memberVO.getPhone());
 		response.setContentType("text/html; charset=UTF-8");

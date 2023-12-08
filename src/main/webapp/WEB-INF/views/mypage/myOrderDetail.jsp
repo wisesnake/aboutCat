@@ -29,7 +29,7 @@
 					</td>
 					<td>
 					  <h2>
-					     <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">${item.goods_title }</a>
+					     <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">${item.goods_name }</a>
 					  </h2>
 					</td>
 					<td>
@@ -39,7 +39,7 @@
 					<td><h2>0원</h2></td>
 					<td><h2>${1500 *item.order_goods_qty }원</h2></td>
 					<td>
-					  <h2>${item.order_goods_qty *item.goods_sales_price}원</h2>
+					  <h2>${item.order_goods_qty *item.goods_sell_price}원</h2>
 					</td>
 			</tr>
 			</c:forEach>

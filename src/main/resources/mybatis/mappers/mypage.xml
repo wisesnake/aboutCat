@@ -9,9 +9,9 @@
 		<result property="order_id" column="order_id" />
 		<result property="member_id" column="member_id" />
 		<result property="goods_id" column="goods_id" />
-		<result property="goods_title" column="goods_title" />
-		<result property="goods_sales_price" column="goods_sales_price" />
-		<result property="order_total_price" column="order_total_price" />
+		<result property="goods_name" column="goods_name" />
+		<result property="goods_sell_price" column="goods_sell_price" />
+		<result property="final_total_price" column="final_total_price" />
 		<result property="order_goods_qty" column="order_goods_qty" />
 
 		<result property="orderer_name" column="orderer_name" />
@@ -34,7 +34,7 @@
 		<result property="final_total_price" column="final_total_price" />
 		<result property="goods_qty" column="goods_qty" />
 
-		<result property="goods_fileName" column="goods_fileName" />
+		<result property="goods_image_fileName" column="goods_image_fileName" />
 	</resultMap>
 
 

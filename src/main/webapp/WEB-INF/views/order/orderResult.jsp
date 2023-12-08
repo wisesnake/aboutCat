@@ -22,22 +22,22 @@
 				    <td> ${item.order_id }</td>
 					<TD class="goods_image">
 					  <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
-					    <IMG width="75" alt=""  src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}">
+					    <IMG width="75" alt=""  src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_image_fileName}">
 					  </a>
 					</TD>
 					<TD>
 					  <h2>
-					     <A href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">${item.goods_title }</A>
+					     <A href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">${item.goods_name }</A>
 					  </h2>
 					</TD>
 					<td>
 					  <h2>${item.order_goods_qty }개<h2>
 					</td>
-					<td><h2>${item.order_goods_qty *item.goods_sales_price}원 (10% 할인)</h2></td>
+					<td><h2>${item.order_goods_qty *item.goods_sell_price}원 (10% 할인)</h2></td>
 					<td><h2>0원</h2></td>
 					<td><h2>${1500 *item.order_goods_qty }원</h2></td>
 					<td>
-					  <h2>${item.order_goods_qty *item.goods_sales_price}원</h2>
+					  <h2>${item.order_goods_qty *item.goods_sell_price}원</h2>
 					</td>
 			</TR>
 			</c:forEach>
