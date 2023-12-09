@@ -16,10 +16,7 @@ public class ImageFileVO {
 	private String goods_image_fileName;
 	private String goods_image_type;
 	private String goods_image_writerid;
+	
 
-	public void setFileType(String fileName) {
-		// TODO Auto-generated method stub
-
-	}
 
 }

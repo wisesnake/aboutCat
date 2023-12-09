@@ -152,9 +152,165 @@ public class AdminGoodsControllerImpl extends BaseController implements AdminGoo
 		return resEntity;
 	}
 
-
 	
+	@Override
+	@RequestMapping(value="/addNewGoodsImage.do" ,method={RequestMethod.POST})
+	public void addNewGoodsImage(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
+			throws Exception {
+		System.out.println("addNewGoodsImage");
+		multipartRequest.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		String imageFileName=null;
+		
+		Map goodsMap = new HashMap();
+		Enumeration enu=multipartRequest.getParameterNames();
+		while(enu.hasMoreElements()){
+			String name=(String)enu.nextElement();
+			String value=multipartRequest.getParameter(name);
+			goodsMap.put(name,value);
+		}
+		
+		HttpSession session = multipartRequest.getSession();
+		MemberVO memberVO = (MemberVO) session.getAttribute("memberInfo");
+		String reg_id = memberVO.getMember_id();
+		
+		List<ImageFileVO> imageFileList=null;
+		int goods_id=0;
+		try {
+			imageFileList =upload(multipartRequest);
+			if(imageFileList!= null && imageFileList.size()!=0) {
+				for(ImageFileVO imageFileVO : imageFileList) {
+					goods_id = Integer.parseInt((String)goodsMap.get("goods_id"));
+					imageFileVO.setGoods_id(goods_id);
+					imageFileVO.setGoods_image_writerid(reg_id);
+				}
+				
+			    adminGoodsService.addNewGoodsImage(imageFileList);
+				for(ImageFileVO  imageFileVO:imageFileList) {
+					imageFileName = imageFileVO.getGoods_image_fileName();
+					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+"temp"+"\\"+imageFileName);
+					File destDir = new File(CURR_IMAGE_REPO_PATH+"\\"+goods_id);
+					FileUtils.moveFileToDirectory(srcFile, destDir,true);
+				}
+			}
+		}catch(Exception e) {
+			if(imageFileList!=null && imageFileList.size()!=0) {
+				for(ImageFileVO  imageFileVO:imageFileList) {
+					imageFileName = imageFileVO.getGoods_image_fileName();
+					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+"temp"+"\\"+imageFileName);
+					srcFile.delete();
+				}
+			}
+			e.printStackTrace();
+		}
+	}
 	
+	@RequestMapping(value="/modifyGoodsForm.do" ,method={RequestMethod.GET,RequestMethod.POST})
+	public ModelAndView modifyGoodsForm(@RequestParam("goods_id") int goods_id,
+			                            HttpServletRequest request, HttpServletResponse response)  throws Exception {
+		
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		
+		Map goodsMap=adminGoodsService.goodsDetail(goods_id);
+		mav.addObject("goodsMap",goodsMap);
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/modifyGoodsInfo.do" ,method={RequestMethod.POST})
+	public ResponseEntity modifyGoodsInfo( @RequestParam("goods_id") String goods_id,
+			                     @RequestParam("attribute") String attribute,
+			                     @RequestParam("value") String value,
+			HttpServletRequest request, HttpServletResponse response)  throws Exception {
+		//System.out.println("modifyGoodsInfo");
+		
+		
+		Map<String,String> goodsMap=new HashMap<String,String>();
+		goodsMap.put("goods_id", goods_id);
+		goodsMap.put(attribute, value);
+		adminGoodsService.modifyGoodsInfo(goodsMap);
+		
+		String message = null;
+		ResponseEntity resEntity = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		message  = "mod_success";
+		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		return resEntity;
+	}
+	
+	@RequestMapping(value="/modifyGoodsImageInfo.do" ,method={RequestMethod.POST})
+	public void modifyGoodsImageInfo(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception {
+		System.out.println("modifyGoodsImageInfo");
+		multipartRequest.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		String imageFileName=null;
+		
+		Map goodsMap = new HashMap();
+		Enumeration enu=multipartRequest.getParameterNames();
+		while(enu.hasMoreElements()){
+			String name=(String)enu.nextElement();
+			String value=multipartRequest.getParameter(name);
+			goodsMap.put(name,value);
+		}
+		
+		HttpSession session = multipartRequest.getSession();
+		MemberVO memberVO = (MemberVO) session.getAttribute("memberInfo");
+		String reg_id = memberVO.getMember_id();
+		
+		List<ImageFileVO> imageFileList=null;
+		int goods_id=0;
+		int image_id=0;
+		try {
+			imageFileList =upload(multipartRequest);
+			if(imageFileList!= null && imageFileList.size()!=0) {
+				for(ImageFileVO imageFileVO : imageFileList) {
+					goods_id = Integer.parseInt((String)goodsMap.get("goods_id"));
+					image_id = Integer.parseInt((String)goodsMap.get("image_id"));
+					imageFileVO.setGoods_id(goods_id);
+					imageFileVO.setGoods_image_id(image_id);
+					imageFileVO.setGoods_image_writerid(reg_id);
+				}
+				
+			    adminGoodsService.modifyGoodsImage(imageFileList);
+				for(ImageFileVO  imageFileVO:imageFileList) {
+					imageFileName = imageFileVO.getGoods_image_fileName();
+					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+"temp"+"\\"+imageFileName);
+					File destDir = new File(CURR_IMAGE_REPO_PATH+"\\"+goods_id);
+					FileUtils.moveFileToDirectory(srcFile, destDir,true);
+				}
+			}
+		}catch(Exception e) {
+			if(imageFileList!=null && imageFileList.size()!=0) {
+				for(ImageFileVO  imageFileVO:imageFileList) {
+					imageFileName = imageFileVO.getGoods_image_fileName();
+					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+"temp"+"\\"+imageFileName);
+					srcFile.delete();
+				}
+			}
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@Override
+	@RequestMapping(value="/removeGoodsImage.do" ,method={RequestMethod.POST})
+	public void  removeGoodsImage(@RequestParam("goods_id") int goods_id,
+			                      @RequestParam("goods_image_id") int goods_image_id,
+			                      @RequestParam("goods_image_fileName") String imageFileName,
+			                      HttpServletRequest request, HttpServletResponse response)  throws Exception {
+		
+		adminGoodsService.removeGoodsImage(goods_image_id);
+		try{
+			File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+goods_id+"\\"+imageFileName);
+			srcFile.delete();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 }

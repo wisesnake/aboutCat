@@ -20,77 +20,68 @@ import com.aboutcat.goods.vo.GoodsVO;
 import net.sf.json.JSONObject;
 
 @Controller
-@RequestMapping(value="/goods")
+@RequestMapping(value = "/goods")
 public class GoodsControllerImpl implements GoodsController {
 	@Autowired
 	private GoodsService goodsService;
-	
+
 	@Override
-	@RequestMapping(value="/goodsDetail.do" ,method = RequestMethod.GET)
-	public ModelAndView goodsDetail(@RequestParam("goods_id") String goods_id, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-	
-		String viewName= (String) request.getAttribute("viewName");
+	@RequestMapping(value = "/goodsDetail.do", method = RequestMethod.GET)
+	public ModelAndView goodsDetail(@RequestParam("goods_id") String goods_id, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		
+
 		Map goodsMap = goodsService.goodsDetail(goods_id);
 		mav.addObject("goodsMap", goodsMap);
 		GoodsVO goodsVO = (GoodsVO) goodsMap.get("goodsVO");
 		return mav;
 	}
 
-
-	@RequestMapping(value="/searchGoods.do" ,method = RequestMethod.GET)
-	public ModelAndView searchGoods(@RequestParam("searchWord") String searchWord,
-			                       HttpServletRequest request, HttpServletResponse response) throws Exception{
-		String viewName=(String)request.getAttribute("viewName");
-		List<GoodsVO> goodsList=goodsService.searchGoods(searchWord);
+	@RequestMapping(value = "/searchGoods.do", method = RequestMethod.GET)
+	public ModelAndView searchGoods(@RequestParam("searchWord") String searchWord, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		String viewName = (String) request.getAttribute("viewName");
+		List<GoodsVO> goodsList = goodsService.searchGoods(searchWord);
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("goodsList", goodsList);
 		return mav;
-		
+
 	}
-	
-	
-	@RequestMapping(value = "/keyword.do" ,method = RequestMethod.GET)
-	public ModelAndView keyword(@RequestParam("keyword") String keyword, HttpServletRequest request, 
+
+	@RequestMapping(value = "/keyword.do", method = RequestMethod.GET)
+	public ModelAndView keyword(@RequestParam("keyword") String keyword, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		
+
 		System.out.println("여기 키워드 서치 컨트롤러");
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		
-		List<GoodsVO> list= goodsService.keyword(keyword);
+
+		List<GoodsVO> list = goodsService.keyword(keyword);
 		mav.addObject("list", list);
-		//그뒤에 JSON쓰는 이유 몰라서 아직 안씀
+		// 그뒤에 JSON쓰는 이유 몰라서 아직 안씀
 		return mav;
 	}
-	
-	@RequestMapping(value="/keywordSearch.do",method = RequestMethod.GET,produces = "application/text; charset=utf8")
-	public @ResponseBody String  keywordSearch(@RequestParam("keyword") String keyword,
-			                                  HttpServletRequest request, HttpServletResponse response) throws Exception{
+
+	@RequestMapping(value = "/keywordSearch.do", method = RequestMethod.GET, produces = "application/text; charset=utf8")
+	public @ResponseBody String keywordSearch(@RequestParam("keyword") String keyword, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		response.setContentType("text/html;charset=utf-8");
 		response.setCharacterEncoding("utf-8");
 
-		if(keyword == null || keyword.equals(""))
-		   return null ;
-	
+		if (keyword == null || keyword.equals(""))
+			return null;
+
 		keyword = keyword.toUpperCase();
-	    List<String> keywordList =goodsService.keywordSearch(keyword);
-	    
+		List<String> keywordList = goodsService.keywordSearch(keyword);
 
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("keyword", keywordList);
-		 		
-	    String jsonInfo = jsonObject.toString();
 
-	    return jsonInfo ;
+		String jsonInfo = jsonObject.toString();
+
+		return jsonInfo;
 	}
-	
-	
-	
-	
-
-	
 
 }

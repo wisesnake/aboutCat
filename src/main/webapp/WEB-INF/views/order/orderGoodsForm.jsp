@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"
 	 isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <!-- 주문자 휴대폰 번호 -->
 <c:set  var="orderer_hp" value=""/>
@@ -15,7 +16,7 @@
 <!-- 총할인금액 -->
 <c:set var="total_discount_price" value="0" />
 <!-- 총 배송비 -->
-<c:set var="total_delivery_price" value="0" />
+<c:set var="total_delivery_price" value="2500" />
 
 <head>
 <style>
@@ -187,8 +188,8 @@ function imagePopup(type) {
 }
 
 var goods_id="";
-var goods_title="";
-var goods_fileName="";
+var goods_name="";
+var goods_image_fileName="";
 
 var order_goods_qty
 var each_goods_price;
@@ -211,12 +212,12 @@ var pay_orderer_phone_num;
 
 function fn_show_order_detail(){
 	goods_id="";
-	goods_title="";
+	goods_name="";
 	
 	var frm=document.form_order;
 	var h_goods_id=frm.h_goods_id;
-	var h_goods_title=frm.h_goods_title;
-	var h_goods_fileName=frm.h_goods_fileName;
+	var h_goods_name=frm.h_goods_name;
+	var h_goods_image_fileName=frm.h_goods_image_fileName;
 	var r_delivery_method  =  frm.delivery_method;
 	var h_order_goods_qty=document.getElementById("h_order_goods_qty");
 	var h_total_order_goods_qty=document.getElementById("h_total_order_goods_qty");
@@ -235,21 +236,21 @@ function fn_show_order_detail(){
 		}	
 	}
 	
-	if(h_goods_title.length <2 ||h_goods_title.length==null){
-		goods_title+=h_goods_title.value;
+	if(h_goods_name.length <2 ||h_goods_name.length==null){
+		goods_name+=h_goods_name.value;
 	}else{
-		for(var i=0; i<h_goods_title.length;i++){
-			goods_title+=h_goods_title[i].value+"<br>";
+		for(var i=0; i<h_goods_name.length;i++){
+			goods_name+=h_goods_name[i].value+"<br>";
 			
 		}	
 	}
 	
 	
-	if(h_goods_fileName.length <2 ||h_goods_fileName.length==null){
-		goods_fileName+=h_goods_fileName.value;
+	if(h_goods_image_fileName.length <2 ||h_goods_image_fileName.length==null){
+		goods_image_fileName+=h_goods_image_fileName.value;
 	}else{
-		for(var i=0; i<h_goods_fileName.length;i++){
-			goods_fileName+=h_goods_fileName[i].value+"<br>";
+		for(var i=0; i<h_goods_image_fileName.length;i++){
+			goods_image_fileName+=h_goods_image_fileName[i].value+"<br>";
 			
 		}	
 	}
@@ -328,7 +329,7 @@ function fn_show_order_detail(){
 	delivery_message=i_delivery_message.value;
 	
 	var p_order_goods_id=document.getElementById("p_order_goods_id");
-	var p_order_goods_title=document.getElementById("p_order_goods_title");
+	var p_order_goods_name=document.getElementById("p_order_goods_name");
 	var p_order_goods_qty=document.getElementById("p_order_goods_qty");
 	var p_total_order_goods_qty=document.getElementById("p_total_order_goods_qty");
 	var p_total_order_goods_price=document.getElementById("p_total_order_goods_price");
@@ -342,7 +343,7 @@ function fn_show_order_detail(){
 	var p_pay_method=document.getElementById("p_pay_method");
 	
 	p_order_goods_id.innerHTML=goods_id;
-	p_order_goods_title.innerHTML=goods_title;
+	p_order_goods_name.innerHTML=goods_name;
 	p_total_order_goods_qty.innerHTML=total_order_goods_qty+"개";
 	p_total_order_goods_price.innerHTML=total_order_goods_price+"원";
 	p_orderer_name.innerHTML=orderer_name;
@@ -424,7 +425,7 @@ function fn_process_pay_order(){
 			<tr style="background: #33ff00">
 				<td colspan=2 class="fixed">주문상품명</td>
 				<td>수량</td>
-				<td>주문금액</td>
+				<td>주문금액(10% 할인)</td>
 				<td>배송비</td>
 				<td>예상적립금</td>
 				<td>주문금액합계</td>
@@ -433,33 +434,36 @@ function fn_process_pay_order(){
 				<c:forEach var="item" items="${myOrderList }">
 					<td class="goods_image">
 					  <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
-					    <img width="75" alt=""  src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}">
+					    <img width="75" alt=""  src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_image_fileName}">
 					    <input   type="hidden" id="h_goods_id" name="h_goods_id" value="${item.goods_id }" />
-					    <input   type="hidden" id="h_goods_fileName" name="h_goods_fileName" value="${item.goods_fileName }" />
+					    <input   type="hidden" id="h_goods_image_fileName" name="h_goods_image_fileName" value="${item.goods_image_fileName }" />
 					  </a>
 					</td>
 					<td>
 					  <h2>
-					     <a href="${pageContext.request.contextPath}/goods/goods.do?command=goods_detail&goods_id=${item.goods_id }">${item.goods_title }</A>
-					      <input   type="hidden" id="h_goods_title" name="h_goods_title" value="${item.goods_title }" />
+					     <a href="${pageContext.request.contextPath}/goods/goods.do?command=goods_detail&goods_id=${item.goods_id }">${item.goods_name }</A>
+					      <input   type="hidden" id="h_goods_name" name="h_goods_name" value="${item.goods_name }" />
 					  </h2>
 					</td>
 					<td>
 					  <h2>${item.order_goods_qty }개<h2>
 					    <input   type="hidden" id="h_order_goods_qty" name="h_order_goods_qty" value="${item.order_goods_qty}" />
 					</td>
-					<td><h2>${item.goods_sales_price}원 (10% 할인)</h2></td>
+					<c:set var="v_orderPrice" value="${item.goods_sell_price * item.order_goods_qty}"/>
+					<fmt:formatNumber value="${v_orderPrice}" type="number"	var="orderPrice" />
+					<fmt:formatNumber value="${v_orderPrice * 0.1}" type="number"	var="juklip" />
+					<td><h2>${orderPrice}원 </h2></td>
 					<td><h2>0원</h2></td>
-					<td><h2>${1500 *item.order_goods_qty}원</h2></td>
+					<td><h2>${juklip}원</h2></td>
 					<td>
-					  <h2>${item.goods_sales_price * item.order_goods_qty}원</h2>
-					  <input  type="hidden" id="h_each_goods_price"  name="h_each_goods_price" value="${item.goods_sales_price * item.order_goods_qty}" />
+					  <h2>${item.goods_sell_price * item.order_goods_qty}원</h2>
+					  <input  type="hidden" id="h_each_goods_price"  name="h_each_goods_price" value="${item.goods_sell_price * item.order_goods_qty}" />
 					</td>
 			</tr>
 			<c:set var="final_total_order_price"
-				value="${final_total_order_price+ item.goods_sales_price* item.order_goods_qty}" />
+				value="${final_total_order_price  + item.goods_sell_price* item.order_goods_qty}" />
 			<c:set var="total_order_price"
-				value="${total_order_price+ item.goods_sales_price* item.order_goods_qty}" />
+				value="${total_order_price+ item.goods_sell_price* item.order_goods_qty}" />
 			<c:set var="total_order_goods_qty"
 				value="${total_order_goods_qty+item.order_goods_qty }" />
 			</c:forEach>
@@ -561,7 +565,7 @@ function fn_process_pay_order(){
 			  <tr class="dot_line">
 				<td ><h2>이메일</h2></td>
 				<td>
-				 <input  type="text" value="${orderer.email1}@${orderer.email2}" size="15" />
+				 <input  type="text" value="${orderer.member_email1}${orderer.member_email2}" size="15" />
 				</td>
 			  </tr>
 		   </tbody>
@@ -615,7 +619,7 @@ function fn_process_pay_order(){
 		<tbody>
 			<tr align=center class="fixed">
 				<td class="fixed">총 상품수</td>
-				<td>총 상품금액</td>
+				<td>총 주문금액</td>
 				<td></td>
 				<td>총 배송비</td>
 				<td></td>
@@ -647,8 +651,8 @@ function fn_process_pay_order(){
 				<td><img width="25" alt="" src="${pageContext.request.contextPath}/resources/image/equal.jpg"></td>
 				<td>
 					<p id="p_final_totalPrice">
-						<font size="15">${final_total_order_price }원 </font>
-					</p> <input id="h_final_total_Price" type="hidden" value="${final_total_order_price}" />
+						<font size="15">${final_total_order_price + total_delivery_price}원 </font>
+					</p> <input id="h_final_total_Price" type="hidden" value="${final_total_order_price + total_delivery_price}" />
 				</td>
 			</tr>
 		</tbody>
@@ -758,7 +762,7 @@ function fn_process_pay_order(){
 					      주문상품명:
 					 </td>
 					 <td>
-						  <p id="p_order_goods_title"> 주문 상품명 </p>    
+						  <p id="p_order_goods_name"> 주문 상품명 </p>    
 					 </td>
 				   </tr>
 				   <tr>
