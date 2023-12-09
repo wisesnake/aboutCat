@@ -99,7 +99,7 @@
     	select goods_name
     	from cat_goods_tbl
     	where
-    	goods_name like '%'|| #{keyword} || '%'
+    	goods_name like '%'||#{keyword}||'%'
     	]]>
 	</select>
 
