@@ -43,19 +43,26 @@
 </style>
 <script type="text/javascript">
 	function add_cart(goods_id) {
+		var order_qty = document.getElementById("goods_stock").value;
+		
+		if(${isLogOn eq false}){
+			alert("로그인 후 이용 가능합니다.");
+			return;
+		}
 		$.ajax({
 			type : "post",
 			async : false, //false인 경우 동기식으로 처리한다.
 			url : "${contextPath}/cart/addGoodsInCart.do",
 			data : {
-				goods_id : goods_id
+				goods_id : goods_id,
+				cart_goods_qty : order_qty
 
 			},
 			success : function(data, textStatus) {
 				//alert(data);
 				//	$('#message').append(data);
 				if (data.trim() == 'add_success') {
-					imagePopup('open', '.layer01');
+					alert("상품을 장바구니에 추가하였습니다.");
 				} else if (data.trim() == 'already_existed') {
 					alert("이미 카트에 등록된 상품입니다.");
 				}
@@ -70,56 +77,39 @@
 		}); //end ajax	
 	}
 
-	function imagePopup(type) {
-		if (type == 'open') {
-			// 팝업창을 연다.
-			jQuery('#layer').attr('style', 'visibility:visible');
-
-			// 페이지를 가리기위한 레이어 영역의 높이를 페이지 전체의 높이와 같게 한다.
-			jQuery('#layer').height(jQuery(document).height());
-		}
-
-		else if (type == 'close') {
-
-			// 팝업창을 닫는다.
-			jQuery('#layer').attr('style', 'visibility:hidden');
-		}
-	}
-
-	function fn_order_each_goods(goods_id, goods_name, goods_price,
+	function fn_order_each_goods(goods_id, goods_name, goods_sell_price,
 			goods_image_fileName) {
-		var _isLogOn = document.getElementById("isLogOn");
-		var isLogOn = _isLogOn.value;
-
-		if (isLogOn == "false" || isLogOn == '') {
-			alert("로그인 후 주문이 가능합니다!!!");
+		if(${isLogOn eq false}){
+			alert("로그인 후 이용 가능합니다.");
+			return;
 		}
 
 		var total_price, final_total_price;
-		var order_goods_qty = document.getElementById("order_goods_qty");
 
 		var formObj = document.createElement("form");
 		var i_goods_id = document.createElement("input");
-		var i_goods_title = document.createElement("input");
-		var i_goods_price = document.createElement("input");
+		var i_goods_name = document.createElement("input");
+		var i_goods_sell_price = document.createElement("input");
 		var i_goods_image_fileName = document.createElement("input");
 		var i_order_goods_qty = document.createElement("input");
+		
+		var order_qty = document.getElementById("goods_stock").value;
 
 		i_goods_id.name = "goods_id";
 		i_goods_name.name = "goods_name";
-		i_goods_price.name = "goods_price";
+		i_goods_sell_price.name = "goods_sell_price";
 		i_goods_image_fileName.name = "goods_image_fileName";
 		i_order_goods_qty.name = "order_goods_qty";
 
 		i_goods_id.value = goods_id;
-		i_order_goods_qty.value = order_goods_qty.value;
-		i_goods_name.value = goods_title;
-		i_goods_price.value = goods_sales_price;
-		i_goods_image_fileName.value = fileName;
+		i_order_goods_qty.value = order_qty;
+		i_goods_name.value = goods_name;
+		i_goods_sell_price.value = goods_sell_price;
+		i_goods_image_fileName.value = goods_image_fileName;
 
 		formObj.appendChild(i_goods_id);
 		formObj.appendChild(i_goods_name);
-		formObj.appendChild(i_goods_price);
+		formObj.appendChild(i_goods_sell_price);
 		formObj.appendChild(i_goods_image_fileName);
 		formObj.appendChild(i_order_goods_qty);
 
@@ -128,8 +118,8 @@
 		formObj.action = "${contextPath}/order/orderEachGoods.do";
 		formObj.submit();
 	
-		
 	}
+	
 </script>
 </head>
 <body>
@@ -161,7 +151,7 @@
 					<td class="fixed">판매가</td>
 
 					<td class="active"><span> <fmt:formatNumber
-								value="${goods.goods_price * 0.9}" type="number"
+								value="${goods.goods_sell_price}" type="number"
 								var="discounted_price" /> ${discounted_price}원(10%할인)
 					</span></td>
 				</tr>

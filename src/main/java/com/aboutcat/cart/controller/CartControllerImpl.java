@@ -49,7 +49,7 @@ public class CartControllerImpl extends BaseController implements CartController
 	}
 
 	@RequestMapping(value = "/addGoodsInCart.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")
-	public @ResponseBody String addGoodsInCart(@RequestParam("goods_id") int goods_id, HttpServletRequest request,
+	public @ResponseBody String addGoodsInCart(@RequestParam("goods_id") int goods_id,@RequestParam("cart_goods_qty") int cart_goods_qty, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		memberVO = (MemberVO) session.getAttribute("memberInfo");
@@ -58,6 +58,7 @@ public class CartControllerImpl extends BaseController implements CartController
 		cartVO.setMember_id(member_id);
 		// 카트 등록전에 이미 등록된 제품인지 판별한다.
 		cartVO.setGoods_id(goods_id);
+		cartVO.setCart_goods_qty(cart_goods_qty);
 		cartVO.setMember_id(member_id);
 		boolean isAreadyExisted = cartService.findCartGoods(cartVO);
 		System.out.println("isAreadyExisted:" + isAreadyExisted);
