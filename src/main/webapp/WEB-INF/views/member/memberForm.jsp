@@ -82,7 +82,6 @@
 
 	function fn_overlapped() {
 		var _id = $("#_member_id").val();
-		alert($("#_member_id").val());
 		if (_id == '') {
 			alert("ID를 입력하세요");
 			return;
@@ -114,11 +113,97 @@
 			}
 		}); //end ajax	 
 	}
+
+
+
+	var compare_result = false;
+	
+	function fn_compare_pwd() {
+	var pwd1 = $('#member_pw').val();
+	var pwd2 = $('#member_pw_confrim').val();
+	var s_result = $('s_result').val();
+	
+	if(pwd1 == pwd2){
+		compare_result = true;
+		$('#s_result').text('비밀번호가 일치합니다.')
+	}else{
+		compare_result = false;
+		$('#s_result').text('비밀번호가 일치하지 않습니다.')
+		
+	}
+	}
+
+
+	
+	
+	function updateEmail2(selectElement) {
+	    var memberEmail2Input = document.getElementsByName("member_email2")[0];
+
+	    if (selectElement.value === "") {
+	        // 직접입력을 선택한 경우
+	        memberEmail2Input.value = "";
+	        memberEmail2Input.removeAttribute("readonly"); // 입력 가능하도록 readonly 제거
+	    } else {
+	        // 다른 옵션을 선택한 경우
+	        memberEmail2Input.value = selectElement.value;
+	        memberEmail2Input.setAttribute("readonly", true); // 입력 불가능하도록 readonly 속성 추가
+	    }
+	}
+	
+	function fn_delete_member(member_id ,member_deleted){
+		var frm_mod_member=document.frm_mod_member;
+		var i_member_id = document.createElement("input");
+		var i_member_deleted = document.createElement("input");
+	    
+		
+	    i_member_id.name="member_id";
+	    i_member_deleted.name="member_deleted";
+	    i_member_id.value=member_id;
+	    i_member_deleted.value=member_deleted;
+	    
+	    frm_mod_member.appendChild(i_member_id);
+	    frm_mod_member.appendChild(i_member_deleted);
+	    frm_mod_member.method="post";
+	    frm_mod_member.action="/aboutcat/admin/member/deleteMember.do";
+	    frm_mod_member.submit();
+	}
+	
+	
+    function setcheckSms() {
+        if (document.getElementById("sms_valid_checkBox").checked) {
+            document.getElementById("h_sms_valid_check").value = "true";
+        } else {
+            document.getElementById("h_sms_valid_check").value = "false";
+        }
+    }
+    
+    function setcheckEmail () {
+        if (document.getElementById("email_valid_checkBox").checked) {
+            document.getElementById("h_email_valid_check").value = "true";
+        } else {
+            document.getElementById("h_email_valid_check").value = "false";
+        }
+    }
+    
+  
+	
+	
+	
+	</script>
+	
+	
 </script>
+
+
+
+
+
+
+
 </head>
 <body>
 	<h3>필수입력사항</h3>
-	<form action="${contextPath}/member/addMember.do" method="post">
+	<form action="${contextPath}/member/addMember.do" method="post" id="">
 		<div id="detail_table">
 			<table>
 				<tbody>
@@ -130,7 +215,12 @@
 					</tr>
 					<tr class="dot_line">
 						<td class="fixed_join">비밀번호</td>
-						<td><input name="member_pw" type="password" size="20" /></td>
+						<td><input name="member_pw" id="member_pw" placeholder="비밀번호 입력" type="password" size="20" /></td>
+					</tr>
+					<tr class="dot_line">
+						<td class="fixed_join">비밀번호확인</td>
+						<td><input name="member_pw_confrim" id="member_pw_confrim" placeholder="비밀번호 확인" type="password" onkeyup="fn_compare_pwd()" size="20"/>
+						<span style = "font-size:10px" id="s_result">비밀번호가 일치하지 않습니다.</span></td>
 					</tr>
 					<tr class="dot_line">
 						<td class="fixed_join">이름</td>
@@ -180,31 +270,29 @@
 										</c:otherwise>
 									</c:choose>
 								</c:forEach>
-						</select>일 <span style="padding-left: 50px"></span> <input type="radio"
-							name="birth_day_yinyang" value=true checked />양력 <span
-							style="padding-left: 50px"></span> <input type="radio"
-							name="birth_day_yinyang" value=false />음력</td>
+						</select>일 <span style="padding-left: 50px"></span> 
+						<input type="radio" name="birth_day_yinyang" value=2 checked />양력 
+						<span style="padding-left: 50px"></span> 
+						<input type="radio"	name="birth_day_yinyang" value=1 />음력</td>
 					</tr>
 					<tr class="dot_line">
 						<td class="fixed_join">휴대폰번호</td>
 						<td><input size="30px" maxlength="11"
 							placeholder="-을 제외한 숫자  11자리를 입력하세요." type="text" name="phone"><br>
-							<br> 
-							<c:choose> 
-					   <c:when test="${member_info.sms_valid_check}">
-					     <input type="checkbox"  name="sms_valid_check" value="true" checked /> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.
-						</c:when>
-						<c:otherwise>
-						  <input type="checkbox"  name="sms_valid_check" value="false"  /> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.
-						</c:otherwise>
-					 </c:choose></td>
-					</tr>	
+							<!-- <br> <input type="checkbox" name="sms_valid_check" value = true	checked /> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.</td> -->
+							<br><input type="checkbox"  id="sms_valid_checkBox" onClick="setcheckSms()" checked />쇼핑몰에서 발송하는 SMS 소식을 수신합니다.
+							<input type="hidden" name="sms_valid_check" id="h_sms_valid_check" value="true" /></td>
+							
+					
+					</tr>
 					<tr class="dot_line">
 						<td class="fixed_join">이메일<br>(e-mail)
 						</td>
 						<td><input size="10px" type="text" name="member_email1" /> @
-							<input size="10px" type="text" name="member_email2" id="emailDomain" /> <select
-							name="member_email2" onChange="setEmailInput(this)" title="직접입력">
+
+							<input size="10px" type="text" name="member_email2" value=""/> 
+							<select name="select_member_email2" onChange="updateEmail2(this)"  title="직접입력">
+                
 								<option value="">직접입력</option>
 								<option value="hanmail.net">hanmail.net</option>
 								<option value="naver.com">naver.com</option>
@@ -217,15 +305,16 @@
 								<option value="empal.com">empal.com</option>
 								<option value="korea.com">korea.com</option>
 								<option value="freechal.com">freechal.com</option>
-						</select><br> <br> <c:choose> 
-					   <c:when test="${member_info.email_valid_check}">
-					     <input type="checkbox" name="email_valid_check"  value="true" checked /> 쇼핑몰에서 발송하는 e-mail을 수신합니다.
-						</c:when>
-						<c:otherwise>
-						  <input type="checkbox" name="email_valid_check"  value="false"  /> 쇼핑몰에서 발송하는 e-mail을 수신합니다.
-						</c:otherwise>
-					 </c:choose></td>
+						</select>
+						<!-- <br> <br> <input type="checkbox" name="email_valid_check" value="true" checked /> 쇼핑몰에서 발송하는 e-mail을 수신합니다.</td> -->
+						<br><input type="checkbox"  id="email_valid_checkBox" onClick="setcheckEmail()" checked /> 쇼핑몰에서 발송하는 e-mail을 수신합니다.
+	
+							<input type="hidden" name="email_valid_check" id="h_email_valid_check" value="true" /></td>
+					
+					
 					</tr>
+					
+					
 					<tr class="dot_line">
 						<td class="fixed_join">주소</td>
 						<td><input type="text" id="postcode" name="postcode"
@@ -247,7 +336,7 @@
 			<br> <br>
 			<table align=center>
 				<tr>
-					<td><input type="submit" value="회원 가입"> <input	type="reset" value="다시입력"></td>
+					<td><input type="submit" value="회원가입" > <input	type="reset" value="다시입력"></td>
 				</tr>
 			</table>
 		</div>

@@ -75,7 +75,7 @@
 <body>
 	<div id="logo">
 	<a href="${contextPath}/main/main.do">
-		<img width="176" height="80" alt="about_cat" src="${contextPath}/resources/image/aboutcat_logo.png">
+		<img width="176" height="80" alt="aboutcat_header" src="${contextPath}/resources/image/aboutcat_topleft.jpg">
 		</a>
 	</div>
 	<div id="head_link">

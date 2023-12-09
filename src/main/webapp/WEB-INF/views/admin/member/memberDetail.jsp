@@ -126,6 +126,7 @@ function fn_modify_member_info(member_id,mod_type){
 			value_member_email2=member_email2.value;
 			value_email_valid_check=email_valid_check.checked;
 			
+			
 			value=value_member_email1+","+value_member_email2+","+value_email_valid_check;
 		}else if(mod_type=='address'){
 			var postcode=frm_mod_member.postcode;
