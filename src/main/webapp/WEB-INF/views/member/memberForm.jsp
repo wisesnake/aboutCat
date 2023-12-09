@@ -123,7 +123,7 @@
 	function updateEmail2(selectElement) {
 	    var memberEmail2Input = document.getElementsByName("member_email2")[0];
 
-	    if (selectElement.value === "non") {
+	    if (selectElement.value === "") {
 	        // 직접입력을 선택한 경우
 	        memberEmail2Input.value = "";
 	        memberEmail2Input.removeAttribute("readonly"); // 입력 가능하도록 readonly 제거
@@ -255,9 +255,9 @@
 									</c:choose>
 								</c:forEach>
 						</select>일 <span style="padding-left: 50px"></span> 
-						<input type="radio" name="birth_day_yinyang" value=true checked />양력 
+						<input type="radio" name="birth_day_yinyang" value=2 checked />양력 
 						<span style="padding-left: 50px"></span> 
-						<input type="radio"	name="birth_day_yinyang" value=false />음력</td>
+						<input type="radio"	name="birth_day_yinyang" value=1 />음력</td>
 					</tr>
 					<tr class="dot_line">
 						<td class="fixed_join">휴대폰번호</td>
@@ -265,7 +265,7 @@
 							placeholder="-을 제외한 숫자  11자리를 입력하세요." type="text" name="phone"><br>
 							<!-- <br> <input type="checkbox" name="sms_valid_check" value = true	checked /> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.</td> -->
 							<br><input type="checkbox"  id="sms_valid_checkBox" onClick="setcheckSms()" checked />쇼핑몰에서 발송하는 SMS 소식을 수신합니다.
-							<input type="hidden" name="sms_valid_check" id="h_sms_valid_check" value="" /></td>
+							<input type="hidden" name="sms_valid_check" id="h_sms_valid_check" value="true" /></td>
 							
 					
 					</tr>
@@ -275,7 +275,7 @@
 						<td><input size="10px" type="text" name="member_email1" /> @
 							<input size="10px" type="text" name="member_email2" value=""/> 
 							<select name="select_member_email2" onChange="updateEmail2(this)"  title="직접입력">
-								<option value="non">직접입력</option>
+								<option value="">직접입력</option>
 								<option value="hanmail.net">hanmail.net</option>
 								<option value="naver.com">naver.com</option>
 								<option value="yahoo.co.kr">yahoo.co.kr</option>
@@ -290,7 +290,8 @@
 						</select>
 						<!-- <br> <br> <input type="checkbox" name="email_valid_check" value="true" checked /> 쇼핑몰에서 발송하는 e-mail을 수신합니다.</td> -->
 						<br><input type="checkbox"  id="email_valid_checkBox" onClick="setcheckEmail()" checked /> 쇼핑몰에서 발송하는 e-mail을 수신합니다.
-							<input type="hidden" name="email_valid_check" id="h_email_valid_check" value="" /></td>
+	
+							<input type="hidden" name="email_valid_check" id="h_email_valid_check" value="true" /></td>
 					
 					
 					</tr>
