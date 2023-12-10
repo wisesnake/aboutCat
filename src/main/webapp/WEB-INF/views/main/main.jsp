@@ -6,20 +6,37 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/popup.css">
+    <script src="${contextPath}/resources/jquery/notice_popup.js"></script>
+    
+</head>
+<body>
+    <!-- 이 부분에 페이지의 내용을 넣으세요 -->
 
-<!-- <h1>일단 해당 페이지의 모든 요소는 goods기능에서 데이터를 받아와서 출력하므로, 전부 지웠음.</h1> -->
-
-
-<div id="ad_main_banner">
-	<ul class="bjqs">
-		<li><img width="775" height="145"
-			src="${contextPath}/resources/image/main_banner01.jpg"></li>
-		<li><img width="775" height="145"
-			src="${contextPath}/resources/image/main_banner02.jpg"></li>
-		<li><img width="775" height="145"
-			src="${contextPath}/resources/image/main_banner03.jpg"></li>
-	</ul>
+  <div class="popup-container" id="popupContainer">
+  <div class="popup">
+  	<div class="popName"> 공지사항 </div>
+  	<hr>
+    <div class="popContent">  
+    <p>안녕하세요.<br>
+    국내 최대 고양이 인터넷 쇼핑몰<br>
+    어바웃 켓입니다. <br>
+    항상 즐거운 쇼핑 되시길 바랍니다.<br>
+    감사합니다.</p>
+    </div>
+    <hr>
+    <label>
+      <input type="checkbox" id="noShow" /> 오늘하루 다시뜨지않음
+    </label>
+    <button onclick="closePopup()">닫기</button>
+  </div>
 </div>
+
+
 <div class="main_book">
 	<c:set var="goods_count" value="0" />
 	<h3>인기상품</h3>
@@ -119,3 +136,6 @@
 		</c:if>
 	</c:forEach>
 </div>
+
+</body>
+</html>
