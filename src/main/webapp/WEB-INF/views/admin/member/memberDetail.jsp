@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"
 	isELIgnored="false"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -126,7 +127,6 @@ function fn_modify_member_info(member_id,mod_type){
 			value_member_email2=member_email2.value;
 			value_email_valid_check=email_valid_check.checked;
 			
-			
 			value=value_member_email1+","+value_member_email2+","+value_email_valid_check;
 		}else if(mod_type=='address'){
 			var postcode=frm_mod_member.postcode;
@@ -145,7 +145,7 @@ function fn_modify_member_info(member_id,mod_type){
 		$.ajax({
 			type : "post",
 			async : false, //false인 경우 동기식으로 처리한다.
-			url : "/about_cat/admin/member/modifyMemberInfo.do",
+			url : "{contextPath}/about_cat/admin/member/modifyMemberInfo.do",
 			data : {
 				member_id:member_id,
 				mod_type:mod_type,
@@ -299,15 +299,15 @@ function fn_delete_member(member_id ,member_deleted){
 					   <br>
 					   <br>
 					   <c:choose>
-					    <c:when test="${member_info.birth_day_yinyang == 1}"> 
-					  <input type="radio" name="birth_day_yinyang" value="1" checked />양력
+					    <c:when test="${member_info.birth_day_yinyang}"> 
+					  <input type="radio" name="birth_day_yinyang" value="true" checked />양력
 						&nbsp;&nbsp;&nbsp; 
-						<input type="radio"  name="birth_day_yinyang" value="0" />음력
+						<input type="radio"  name="birth_day_yinyang" value="false" />음력
 						</c:when>
 						<c:otherwise>
-						  <input type="radio" name="birth_day_yinyang" value="1" />양력
+						  <input type="radio" name="birth_day_yinyang" value="true" />양력
 						   &nbsp;&nbsp;&nbsp; 
-						<input type="radio"  name="birth_day_yinyang" value="0" checked  />음력
+						<input type="radio"  name="birth_day_yinyang" value="false" checked  />음력
 						</c:otherwise>
 						</c:choose>
 					</td>
@@ -337,8 +337,7 @@ function fn_delete_member(member_id ,member_deleted){
 				<tr class="dot_line">
 					<td class="fixed_join">이메일(e-mail)</td>
 					<td>
-					   <input type="text" name="member_email1" size=12 value="${member_info.member_email1 }" /> 
-					   <input type="text" size=14  name="member_email2" value="${member_info.member_email2 }" /> 
+					   <input type="text" name="member_email1" size=12 value="${member_info.member_email1 }" /> <input type="text" size=14  name="member_email2" value="${member_info.member_email2 }" /> 
 					   <select name="select_member_email2" onChange="updateEmail2(this)"  title="직접입력">
 							<option value="non">직접입력</option>
 							<option value="@hanmail.net">hanmail.net</option>

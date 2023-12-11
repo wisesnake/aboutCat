@@ -11,8 +11,8 @@ public class OrderVO {
 	private String member_id;
 	private int order_id;
 	private int goods_id;
-	private String goods_name;
-	private int goods_sell_price;
+	private String goods_title;
+	private int goods_sales_price;
 	private int total_goods_price;
 	private int cart_goods_qty; //장바구니에 담긴 제품 수
 	private int order_goods_qty; //최종 주문  제품 수
@@ -34,7 +34,7 @@ public class OrderVO {
 	
 	private String final_total_price;
 	private int goods_qty;
-	private String goods_image_fileName;
+	private String goods_fileName;
 	private String orderer_phone;
 }
 	

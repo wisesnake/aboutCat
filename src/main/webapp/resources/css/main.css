@@ -30,7 +30,7 @@ header {
 	margin-top: 20px;
 }
 header #logo {
-	margin-left: 10px; float: left;
+	margin-left: 10px; float: left; margin-top:28px;
 }
 header #head_link {
 	font-size: 0.75em; margin-right: 10px; float: right;
@@ -45,13 +45,15 @@ header #head_link li {
 	border-right-color: currentColor; border-right-width: medium; border-right-style: none;
 }
 header #search {
-	margin: 20px 10px 0px 0px; padding: 0px; float: right;
+	margin: 20px 41px 0px 0px; padding: 0px; float: right;
 }
 header #search .main_input {
-	padding: 0px 5px; border: 3px solid rgb(51, 102, 153); border-image: none; width: 260px; height: 22px;
+	padding: 0px 5px; border: 3px solid rgb(255, 194, 195); border-image: none; width: 600px; height: 40px;
+	border-radius: 20px;
 }
 header #search .btn1 {
-	border: 1px solid rgb(51, 102, 153); border-image: none; width: 55px; height: 28px; color: rgb(255, 255, 255); margin-left: 2px; background-color: rgb(51, 102, 153);
+	/* border: 1px solid rgb(51, 102, 153); border-image: none; width: 55px; height: 28px; color: rgb(255, 255, 255); margin-left: 2px; background-color: rgb(51, 102, 153); */
+	width: 55px; margin-left: 2px; 
 }
 aside {
 	width: 205px; float: left;
@@ -69,7 +71,8 @@ nav ul li a {
 	display: block;
 }
 nav ul li h3 {
-	background-position: top; padding: 5px 20px; border-radius: 20px; border: 1px solid rgb(204, 204, 204); border-image: none; text-transform: capitalize; font-size: 14px; background-image: url("../imgs/nav_back.jpg"); background-repeat: repeat-x; background-color: rgb(229, 229, 229);
+	background-position: top; padding: 5px 20px; border-radius: 20px; border: 1px solid rgb(204, 204, 204); border-
+: none; text-transform: capitalize; font-size: 14px; background-image: url("../imgs/nav_back.jpg"); background-repeat: repeat-x; background-color: rgb(229, 229, 229);
 }
 nav ul li ul {
 	margin: 10px 0px 0px;
@@ -84,7 +87,7 @@ aside #banner {
 	margin: 20px 0px 15px 15px; font-size: 0.75em;
 }
 #notice h2 {
-	background-position: left; padding: 2px 0px 5px 10px; color: rgb(51, 102, 153); font-family: "NanumGothic"; font-size: 1.2em; border-bottom-color: rgb(51, 102, 153); border-bottom-width: 1px; border-bottom-style: solid; background-image: url("../imgs/notice_h2.gif"); background-repeat: no-repeat;
+	background-position: left; padding: 2px 0px 5px 10px; color: rgb(245, 135, 136); font-family: "NanumGothic"; font-size: 1.2em; border-bottom-color: rgb(245, 135, 136); border-bottom-width: 1px; border-bottom-style: solid; background-image: url("../imgs/notice_h2.gif"); background-repeat: no-repeat;
 }
 #notice ul {
 	list-style: none; margin: 10px 0px 0px;
@@ -110,7 +113,7 @@ article hgroup {
 	margin: 10px 0px;
 }
 article h1 {
-	padding: 0px 0px 5px; letter-spacing: 2px; font-family: "NanumGothic"; font-size: 1.1em; border-bottom-color: rgb(102, 102, 102); border-bottom-width: 2px; border-bottom-style: solid;
+	padding: 0px 0px 5px; letter-spacing: 2px; font-family: "NanumGothic"; font-size: 1.1em; border-bottom-color: rgb(245, 135, 136); border-bottom-width: 2px; border-bottom-style: solid;
 }
 article h2 {
 	padding-top: 5px; font-size: 0.75em; font-weight: normal;
@@ -199,7 +202,7 @@ article table#list_view td.goods_description {
 	width: 500px; padding-left: 5px;
 }
 article table#list_view td.goods_description .writer_press {
-	padding: 2px 5px; color: rgb(51, 102, 255);
+	padding: 2px 5px; color: rgb(245, 135, 136);
 }
 article table#list_view td.goods_description p {
 	line-height: 1.2em;
@@ -226,7 +229,7 @@ article table#list_view td.buy_btns ul li a {
 	padding: 5px 12px; border-radius: 3px; border: 1px solid rgb(153, 153, 153); border-image: none; text-align: center; display: block;
 }
 article table#list_view td.buy_btns ul li a:hover {
-	color: rgb(255, 255, 255); background-color: rgb(0, 51, 102);
+	color: rgb(255, 255, 255); background-color: rgb(245, 135, 136);
 }
 article #page_wrap {
 	margin: 10px auto 50px; padding: 0px; width: 400px;
@@ -259,7 +262,7 @@ article h4 {
 	margin: 5px 0px;
 }
 article h3 {
-	color: rgb(0, 153, 255); font-size: 1em;
+	color: rgb(245, 135, 136); font-size: 1em;
 }
 article h4 {
 	font-size: 0.8em; font-weight: normal;
@@ -448,7 +451,7 @@ footer img {
 	width: 500px; padding-left: 5px;
 }
  .list_view td.goods_description .writer_press {
-	padding: 2px 5px; color: rgb(51, 102, 255);
+	padding: 2px 5px; color: rgb(245, 135, 136);
 }
   .list_view td.goods_description p {
 	line-height: 1.2em;
@@ -475,7 +478,7 @@ footer img {
 	padding: 5px 12px; border-radius: 3px; border: 1px solid rgb(153, 153, 153); border-image: none; text-align: center; display: block;
 }
   .list_view td.buy_btns ul li a:hover {
-	color: rgb(255, 255, 255); background-color: rgb(0, 51, 102);
+	color: rgb(255, 255, 255); background-color: rgb(245, 135, 136);
 }
 
 .detail_table {
@@ -558,7 +561,7 @@ article h1_TITLE {
 	width: auto; padding-top: 7px; font-size: 0.75em;
 }
 .main_book h3 {
-	margin: 0px 0px 5px; padding: 0px 0px 5px; color: rgb(51, 102, 153); text-transform: uppercase; font-family: "NanumGothic", Serif; font-size: 1.2em; border-bottom-color: rgb(51, 102, 153); border-bottom-width: 1px; border-bottom-style: solid;
+	margin: 0px 0px 5px; padding: 0px 0px 5px; color: rgb(245, 135, 136); text-transform: uppercase; font-family: "NanumGothic", Serif; font-size: 1.2em; border-bottom-color: rgb(245, 135, 136); border-bottom-width: 1px; border-bottom-style: solid;
 }
 
 .main_book .book {

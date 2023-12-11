@@ -50,19 +50,19 @@ public class GoodsControllerImpl implements GoodsController {
 
 	}
 
-	@RequestMapping(value = "/keyword.do", method = RequestMethod.GET)
-	public ModelAndView keyword(@RequestParam("keyword") String keyword, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-
-		System.out.println("여기 키워드 서치 컨트롤러");
-		String viewName = (String) request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
-
-		List<GoodsVO> list = goodsService.keyword(keyword);
-		mav.addObject("list", list);
-		// 그뒤에 JSON쓰는 이유 몰라서 아직 안씀
-		return mav;
-	}
+//	@RequestMapping(value = "/keyword.do", method = RequestMethod.GET)
+//	public ModelAndView keyword(@RequestParam("keyword") String keyword, HttpServletRequest request,
+//			HttpServletResponse response) throws Exception {
+//
+//		System.out.println("여기 키워드 서치 컨트롤러");
+//		String viewName = (String) request.getAttribute("viewName");
+//		ModelAndView mav = new ModelAndView(viewName);
+//
+//		List<GoodsVO> list = goodsService.keyword(keyword);
+//		mav.addObject("list", list);
+//		// 그뒤에 JSON쓰는 이유 몰라서 아직 안씀
+//		return mav;
+//	}
 
 	@RequestMapping(value = "/keywordSearch.do", method = RequestMethod.GET, produces = "application/text; charset=utf8")
 	public @ResponseBody String keywordSearch(@RequestParam("keyword") String keyword, HttpServletRequest request,

@@ -41,7 +41,7 @@
 		if(count > 0) {
 		    var html = '';
 		    for(var i in jsonInfo.keyword){
-			   html += "<a href=\"javascript:select('"+jsonInfo.keyword[i]+"')\">"+jsonInfo.keyword[i]+"</a><br/>";
+			   html += "<a href=\"javascript:select('"+jsonInfo.keyword[i].goods_name+"')\">"+jsonInfo.keyword[i].goods_name+"</a><br/>";
 		    }
 		    var listView = document.getElementById("suggestList");
 		    listView.innerHTML = html;
@@ -75,7 +75,7 @@
 <body>
 	<div id="logo">
 	<a href="${contextPath}/main/main.do">
-		<img width="176" height="80" alt="aboutcat_header" src="${contextPath}/resources/image/aboutcat_topleft.jpg">
+		<img width="200"  alt="booktopia" src="${contextPath}/resources/image/Booktopia_Logo0.jpg">
 		</a>
 	</div>
 	<div id="head_link">
@@ -103,7 +103,8 @@
 	<div id="search" >
 		<form name="frmSearch" action="${contextPath}/goods/searchGoods.do" >
 			<input name="searchWord" class="main_input" type="text"  onKeyUp="keywordSearch()"> 
-			<input type="submit" name="search" class="btn1"  value="검 색" >
+			<!-- <input type="submit" name="search" class="btn1"  value="검 색" > -->
+			<input type="image" name="search" class="btn1" src="${contextPath}/resources/image/searchBtn.png" >
 		</form>
 	</div>
    <div id="suggest">
