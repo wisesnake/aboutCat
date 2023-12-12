@@ -104,5 +104,17 @@ public class AdminOrderControllerImpl extends BaseController implements AdminOrd
 
 	}
 
+//    i_command.name="command";
+//    i_beginDate.name="beginDate";
+//    i_endDate.name="endDate";
+//    i_search_type.name="search_type";
+//    i_search_word.name="search_word";
 	
+//	@Override
+//	@RequestMapping(value = "/searchOrder.do", method = { RequestMethod.GET, RequestMethod.POST })
+//	public String searchOrder(@RequestParam HashMap<String,String> searchMap,Model model) {
+//		OrderVO orderVO = adminOrderService.searchOrder(searchMap);
+//		return "/admin/order/adminOrderMain";
+//	}
+//	이부분 연관된 모든 메소드들 리턴타입을 orderVO로 수정중이었음.
 }

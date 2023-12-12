@@ -1,6 +1,7 @@
 package com.aboutcat.admin.order.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +27,11 @@ public class AdminOrderDAOImpl implements AdminOrderDAO{
 	@Override
 	public void changeDeleveryState(Map orderMap) {
 		sqlSession.selectList("mapper.admin.order.changeDeliveryState", orderMap);
+	}
+
+	@Override
+	public void searchOrder(HashMap<String, String> searchMap) {
+		sqlSession.selectList("mapper.admin.order.searchOrder",searchMap);
 	}
 
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	
+
 <mapper namespace="mapper.admin.order">
 	<!-- 리절트 맵 정의 -->
 	<resultMap id="orderResult" type="orderVO">
@@ -35,7 +35,7 @@
 
 		<result property="goods_image_fileName" column="goods_image_fileName" />
 	</resultMap>
-	
+
 	<resultMap type="memberVO" id="memberResult">
 		<result property="member_id" column="member_id" />
 		<result property="member_pw" column="member_pw" />
@@ -57,36 +57,55 @@
 		<result property="member_add_date" column="member_add_date" />
 		<result property="member_deleted" column="member_deleted" />
 	</resultMap>
-	
-	
-	
-	<select id="selectNewOrderList" resultMap="orderResult"   parameterType="java.util.HashMap"  >
-		  select * from (
-			    select rowNum as recNum,t.*
-			       from (
-			              select  *  from cat_order_tbl
-			              where to_char(pay_order_time,'yyyy-mm-dd')  between #{beginDate} and #{endDate}
-			                <if test="search_type=='orderer_id'">
-			                  AND member_id=#{search_word}
-			                </if>
-			                <if test="search_type=='orderer_name'">
-			                  AND orderer_name=#{search_word}
-			                </if>
-			                <if test="search_type=='orderer_hp_num'">
-			                   AND pay_orderer_phone_num=#{search_word} 
-			                </if>
-			              order by pay_order_time desc
-					    ) t
-				)							
-			where				
-		recNum between (#{section}-1)*100+ (#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10				        
-	</select>
-	
-<update id="changeDeliveryState" parameterType="java.util.HashMap">
-    update cat_order_tbl
-    set delivery_state = #{delivery_state}
-    where order_id = #{order_id}
-</update>
 
-	
+
+
+	<select id="selectNewOrderList" resultMap="orderResult" parameterType="java.util.HashMap">
+		select * from (
+		select rowNum as recNum,t.*
+		from (
+		select * from cat_order_tbl
+		where to_char(pay_order_time,'yyyy-mm-dd') between #{beginDate} and #{endDate}
+		<if test="search_type=='orderer_id'">
+			AND member_id=#{search_word}
+		</if>
+		<if test="search_type=='orderer_name'">
+			AND orderer_name=#{search_word}
+		</if>
+		<if test="search_type=='orderer_hp_num'">
+			AND pay_orderer_phone_num=#{search_word}
+		</if>
+		order by pay_order_time desc
+		) t
+		)
+		where
+		recNum between (#{section}-1)*100+ (#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10
+	</select>
+
+	<update id="changeDeliveryState" parameterType="java.util.HashMap">
+		update cat_order_tbl
+		set delivery_state = #{delivery_state}
+		where order_id = #{order_id}
+	</update>
+
+	<select id="searchOrder" resultMap="orderResult" parameterType="java.util.HashMap">
+		select * from cat_order_tbl
+		<if test="search_type=='order_id'">
+			where order_id = #{order_id}
+		</if>
+		<if test="search_type=='orderer_name'">
+			where orderer_name like '%' || #{orderer_name} || '%'
+		</if>
+		<if test="search_type=='orderer_id'">
+			where orderer_id like '%' || #{orderer_id} || '%'
+		</if>
+		<if test="search_type=='orderer_goods'">
+			where orderer_goods like '%' || #{orderer_goods} || '%'
+		</if>
+		<if test="search_type=='orderer_phone'">
+			where orderer_phone = #{orderer_phone}
+		</if>
+	</select>
+
+
 </mapper>

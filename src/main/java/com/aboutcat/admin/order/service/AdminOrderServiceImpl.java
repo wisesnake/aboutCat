@@ -1,6 +1,7 @@
 package com.aboutcat.admin.order.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,10 @@ public class AdminOrderServiceImpl implements AdminOrderService{
 	@Override
 	public void changeDeliveryState(Map orderMap) {
 		adminOrderDAO.changeDeleveryState(orderMap);
+	}
+
+	@Override
+	public void searchOrder(HashMap<String, String> searchMap) {
+		adminOrderDAO.searchOrder(searchMap);
 	}
 }

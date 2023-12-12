@@ -9,6 +9,7 @@
 <c:choose>
 <c:when test='${not empty order_goods_list}'>
 <script  type="text/javascript">
+
 window.onload=function()
 {
 	init();
@@ -199,7 +200,7 @@ function fn_detail_order(order_id){
     formObj.appendChild(i_order_id);
     document.body.appendChild(formObj); 
     formObj.method="post";
-    formObj.action="${contextPath}/admin/order/orderDetail.do";
+    formObj.action="${contextPath}/admin/order/searchOrder.do";
     formObj.submit();
 	
 }
@@ -248,7 +249,7 @@ function fn_detail_search(){
     formObj.appendChild(i_search_word);
     document.body.appendChild(formObj); 
     formObj.method="post";
-    formObj.action="${contextPath}/admin/order/detailOrder.do";
+    formObj.action="${contextPath}/admin/order/searchOrder.do";
     formObj.submit();
     //alert("submit");
 	

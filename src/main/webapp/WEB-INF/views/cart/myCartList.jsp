@@ -101,6 +101,7 @@ function modify_cart_qty(goods_id,goodsprice,index){
 }
 
 
+
 function delete_cart_goods(cart_id){
 	var cart_id=Number(cart_id);
 	var formObj=document.createElement("form");
@@ -262,6 +263,7 @@ function fn_order_all_cart_goods(){
 										src="${contextPath}/resources/image/btn_delete.jpg">
 								</a></td>
 					</tr>
+					
 					<c:set var="totalGoodsPrice"
 						value="${totalGoodsPrice+item.goods_price*0.9*cart_goods_qty }" />
 					<c:set var="totalGoodsNum" value="${totalGoodsNum+1 }" />

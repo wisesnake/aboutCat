@@ -1,5 +1,6 @@
 package com.aboutcat.admin.order.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,5 +15,7 @@ public interface AdminOrderController {
 
 	public ResponseEntity modifyDeliveryState(Map<String, String> mappedData, HttpServletRequest request, HttpServletResponse response,
 			Model model) throws Exception;
+
+	public String searchOrder(@RequestParam HashMap<String,String> searchMap,Model model) ;
 	
 }
