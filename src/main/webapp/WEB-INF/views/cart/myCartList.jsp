@@ -255,6 +255,7 @@ function fn_order_all_cart_goods(){
 										src="${contextPath}/resources/image/btn_delete.jpg">
 								</a></td>
 					</tr>
+					
 					<c:set var="totalGoodsPrice"
 						value="${totalGoodsPrice+item.goods_price*0.9*cart_goods_qty }" />
 					<c:set var="totalGoodsNum" value="${totalGoodsNum+1 }" />

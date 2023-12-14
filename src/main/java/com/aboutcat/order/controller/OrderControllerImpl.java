@@ -34,6 +34,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 	public ModelAndView orderEachGoods(@ModelAttribute("orderVO") OrderVO _orderVO,
 			                       HttpServletRequest request, HttpServletResponse response)  throws Exception{
 		
+		
 		request.setCharacterEncoding("utf-8");
 		HttpSession session=request.getSession();
 		session=request.getSession();
@@ -81,29 +82,29 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		List<GoodsVO> myGoodsList=(List<GoodsVO>)cartMap.get("myGoodsList");
 		MemberVO memberVO=(MemberVO)session.getAttribute("memberInfo");
 		
-//		for(int i=0; i<cart_goods_qty.length;i++){
-//			String[] cart_goods=cart_goods_qty[i].split(":");
-//			for(int j = 0; j< myGoodsList.size();j++) {
-//				GoodsVO goodsVO = myGoodsList.get(j);
-//				int goods_id = goodsVO.getGoods_id();
-//				if(goods_id==Integer.parseInt(cart_goods[0])) {
-//					OrderVO _orderVO=new OrderVO();
-//					
-//					 String goods_title=goodsVO.getGoods_title(); 
-//					 int goods_sales_price=goodsVO.getGoods_sales_price(); 
-//					 String	 goods_fileName=goodsVO.getGoods_fileName();
-//					 
-//					_orderVO.setGoods_id(goods_id);
-//					_orderVO.setGoods_title(goods_title);
-//					_orderVO.setGoods_sales_price(goods_sales_price);
-//					_orderVO.setGoods_fileName(goods_fileName);
-//					_orderVO.setOrder_goods_qty(Integer.parseInt(cart_goods[1]));
-//					myOrderList.add(_orderVO);
-//					break;
-//					
-//				}
-//			}
-//		}
+		for(int i=0; i<cart_goods_qty.length;i++){
+			String[] cart_goods=cart_goods_qty[i].split(":");
+			for(int j = 0; j< myGoodsList.size();j++) {
+				GoodsVO goodsVO = myGoodsList.get(j);
+				int goods_id = goodsVO.getGoods_id();
+				if(goods_id==Integer.parseInt(cart_goods[0])) {
+					OrderVO _orderVO=new OrderVO();
+					
+					 String goods_name=goodsVO.getGoods_name(); 
+					 int goods_sell_price=goodsVO.getGoods_sell_price(); 
+					 String	 goods_image_fileName=goodsVO.getGoods_image_fileName();
+					 
+					_orderVO.setGoods_id(goods_id);
+					_orderVO.setGoods_name(goods_name);
+					_orderVO.setGoods_sell_price(goods_sell_price);
+					_orderVO.setGoods_image_fileName(goods_image_fileName);
+					_orderVO.setOrder_goods_qty(Integer.parseInt(cart_goods[1]));
+					myOrderList.add(_orderVO);
+					break;
+					
+				}
+			}
+		}
 		session.setAttribute("myOrderList", myOrderList);
 		session.setAttribute("orderer", memberVO);
 		return mav;

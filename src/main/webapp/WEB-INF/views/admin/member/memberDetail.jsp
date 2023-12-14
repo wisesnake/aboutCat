@@ -186,7 +186,6 @@ function fn_delete_member(member_id ,member_deleted){
 	var i_member_id = document.createElement("input");
 	var i_member_deleted = document.createElement("input");
     
-	
     i_member_id.name="member_id";
     i_member_deleted.name="member_deleted";
     i_member_id.value=member_id;

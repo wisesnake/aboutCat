@@ -20,7 +20,8 @@
 			data : {keyword:value}, // keywordSearch.do 컨트롤러에 전달되는 데이타는 keyword라는 key를 지닌 js변수의 값(검색키워드)임.
 			success : function(data, textStatus) { // 해당 전송이 특별한 예외 없이 성공할 경우, 반환받은 json형태의 결과를 data라는 매개변수로 활용
 			    var jsonInfo = JSON.parse(data);
-				console.log("jsoninfo에는무엇이담겨있을까 : "  + jsonInfo.keyword);
+				
+				console.log("jsoninfo에는무엇이담겨있을까 : "  + jsonInfo);
 				displayResult(jsonInfo);
 				//서블릿과 통신이 성공했을 경우, 서블릿이 돌려준 결과를 json으로 파싱한 후, 매개인수로써 사용하여 displayResult 메소드를 호출함.
 			},
@@ -29,7 +30,6 @@
 			},
 			complete : function(data, textStatus) {
 				//alert("작업을완료 했습니다");
-				
 			}
 		}); //end ajax	
 	}

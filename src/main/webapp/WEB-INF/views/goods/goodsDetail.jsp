@@ -86,40 +86,39 @@
 		}
 	}
 
-	function fn_order_each_goods(goods_id, goods_name, goods_price,
+	function fn_order_each_goods(goods_id, goods_name, goods_sell_price,
 			goods_image_fileName) {
-		var _isLogOn = document.getElementById("isLogOn");
-		var isLogOn = _isLogOn.value;
-
-		if (isLogOn == "false" || isLogOn == '') {
-			alert("로그인 후 주문이 가능합니다!!!");
+		if(${isLogOn eq false}){
+			alert("로그인 후 이용 가능합니다.");
+			return;
 		}
 
 		var total_price, final_total_price;
-		var order_goods_qty = document.getElementById("order_goods_qty");
 
 		var formObj = document.createElement("form");
 		var i_goods_id = document.createElement("input");
-		var i_goods_title = document.createElement("input");
-		var i_goods_price = document.createElement("input");
+		var i_goods_name = document.createElement("input");
+		var i_goods_sell_price = document.createElement("input");
 		var i_goods_image_fileName = document.createElement("input");
 		var i_order_goods_qty = document.createElement("input");
+		
+		var order_qty = document.getElementById("goods_stock").value;
 
 		i_goods_id.name = "goods_id";
 		i_goods_name.name = "goods_name";
-		i_goods_price.name = "goods_price";
+		i_goods_sell_price.name = "goods_sell_price";
 		i_goods_image_fileName.name = "goods_image_fileName";
 		i_order_goods_qty.name = "order_goods_qty";
 
 		i_goods_id.value = goods_id;
-		i_order_goods_qty.value = order_goods_qty.value;
-		i_goods_name.value = goods_title;
-		i_goods_price.value = goods_sales_price;
-		i_goods_image_fileName.value = fileName;
+		i_order_goods_qty.value = order_qty;
+		i_goods_name.value = goods_name;
+		i_goods_sell_price.value = goods_sell_price;
+		i_goods_image_fileName.value = goods_image_fileName;
 
 		formObj.appendChild(i_goods_id);
 		formObj.appendChild(i_goods_name);
-		formObj.appendChild(i_goods_price);
+		formObj.appendChild(i_goods_sell_price);
 		formObj.appendChild(i_goods_image_fileName);
 		formObj.appendChild(i_order_goods_qty);
 
@@ -127,13 +126,14 @@
 		formObj.method = "post";
 		formObj.action = "${contextPath}/order/orderEachGoods.do";
 		formObj.submit();
+	
 	}
 </script>
 </head>
 <body>
 	<hgroup>
-		<h1>이게 뭐라고해야하나...</h1>
-		<h2>ㅇㅇ &gt; ㄴㄴ &gt; ㅊㅊ</h2>
+		<h1 style="font-size: 3ex;">상품 상세 페이지</h1>
+		<h2 style="font-size: 2ex;"> <a href="${contextPath}/main/main.do">모든 상품 보기</a> &gt; <a href="${contextPath}/goods/keyword.do?keyword=${goods.goods_keyword}"> ${goods.goods_keyword} </a> </h2>
 		<h3>${goods.goods_name}</h3>
 	</hgroup>
 	<div id="goods_image">
