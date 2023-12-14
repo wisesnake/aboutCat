@@ -75,7 +75,7 @@
 <body>
 	<div id="logo">
 	<a href="${contextPath}/main/main.do">
-		<img width="200"  alt="booktopia" src="${contextPath}/resources/image/Booktopia_Logo0.jpg">
+		<img width="200"  alt="aboutcat" src="${contextPath}/resources/image/Booktopia_Logo0.jpg">
 		</a>
 	</div>
 	<div id="head_link">
@@ -92,7 +92,7 @@
 			   <li><a href="${contextPath}/member/memberForm.do">회원가입</a></li> 
 			 </c:otherwise>
 			</c:choose>
-			   <li><a href="#">고객센터</a></li>
+			   
       <c:if test="${isLogOn==true and memberInfo.member_id =='admin' }">  
 	   	   <li class="no_line"><a href="${contextPath}/admin/goods/adminGoodsMain.do">관리자</a></li>
 	    </c:if>
