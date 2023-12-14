@@ -1,5 +1,5 @@
-about_cat
-국비지원 그린컴퓨터 백엔드 과정 1차 웹애플리케이션 팀프로젝트
+< about_cat >
+백엔드 과정 - 팀프로젝트
 
 <조원>
 
@@ -11,6 +11,8 @@ about_cat
 
 임슬범 : 관리자 회원, 장바구니, 주문 및 주문 확인
 
+-----------------------------------------------------
+
 < 운영체제 > Window 10
 
 < 통합개발환경 IDE > STS 3.9.9
@@ -21,6 +23,8 @@ about_cat
 
 < 관리 Tool > Maven
 
+-----------------------------------------------------
+
 <프로젝트 기술 스택>
 
 Frontend : HTML, CSS, JavaScript, AJAX, JSP
@@ -28,6 +32,8 @@ Frontend : HTML, CSS, JavaScript, AJAX, JSP
 Backend : Spring
 
 Database : Oracle Database
+
+-----------------------------------------------------
 
 <프로젝트 구현 기능>
 
