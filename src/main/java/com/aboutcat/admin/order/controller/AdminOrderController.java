@@ -16,6 +16,5 @@ public interface AdminOrderController {
 	public ResponseEntity modifyDeliveryState(Map<String, String> mappedData, HttpServletRequest request, HttpServletResponse response,
 			Model model) throws Exception;
 
-	public String searchOrder(@RequestParam HashMap<String,String> searchMap,Model model) ;
-	
+	public String getOrderDetail(int order_id,Model model);
 }

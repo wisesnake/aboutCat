@@ -72,8 +72,11 @@
 		<if test="search_type=='orderer_name'">
 			AND orderer_name=#{search_word}
 		</if>
-		<if test="search_type=='orderer_hp_num'">
-			AND pay_orderer_phone_num=#{search_word}
+		<if test="search_type=='orderer_phone'">
+			AND orderer_phone=#{search_word}
+		</if>
+		<if test="search_type=='order_goods_name'">
+			AND goods_name=#{search_word}
 		</if>
 		order by pay_order_time desc
 		) t
@@ -88,24 +91,16 @@
 		where order_id = #{order_id}
 	</update>
 
-	<select id="searchOrder" resultMap="orderResult" parameterType="java.util.HashMap">
+	<select id="selectOrderDetail" resultMap="orderResult" parameterType="int">
 		select * from cat_order_tbl
-		<if test="search_type=='order_id'">
-			where order_id = #{order_id}
-		</if>
-		<if test="search_type=='orderer_name'">
-			where orderer_name like '%' || #{orderer_name} || '%'
-		</if>
-		<if test="search_type=='orderer_id'">
-			where orderer_id like '%' || #{orderer_id} || '%'
-		</if>
-		<if test="search_type=='orderer_goods'">
-			where orderer_goods like '%' || #{orderer_goods} || '%'
-		</if>
-		<if test="search_type=='orderer_phone'">
-			where orderer_phone = #{orderer_phone}
-		</if>
+		where order_id = #{order_id}
 	</select>
-
+	
+	<select id="selectOrdererInfo" resultMap="memberResult" parameterType="String">
+		select * from cat_member_tbl
+		where member_id = #{member_id}
+	</select>
+	
+	
 
 </mapper>

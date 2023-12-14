@@ -10,8 +10,7 @@ public interface AdminOrderService {
 	
 	public ArrayList<OrderVO> selectOrderList(Map<String, Object> condMap);
 
-	void changeDeliveryState(Map orderMap);
+	public void changeDeliveryState(Map orderMap);
 
-	public void searchOrder(HashMap<String, String> searchMap);
-
+	public Map<String,Object> selectOrderDetail(int order_id);
 }

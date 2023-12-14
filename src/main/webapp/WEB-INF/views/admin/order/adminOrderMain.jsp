@@ -200,7 +200,7 @@ function fn_detail_order(order_id){
     formObj.appendChild(i_order_id);
     document.body.appendChild(formObj); 
     formObj.method="post";
-    formObj.action="${contextPath}/admin/order/searchOrder.do";
+    formObj.action="${contextPath}/admin/order/orderDetail.do";
     formObj.submit();
 	
 }
@@ -249,7 +249,7 @@ function fn_detail_search(){
     formObj.appendChild(i_search_word);
     document.body.appendChild(formObj); 
     formObj.method="post";
-    formObj.action="${contextPath}/admin/order/searchOrder.do";
+    formObj.action="${contextPath}/admin/order/adminOrderMain.do";
     formObj.submit();
     //alert("submit");
 	
@@ -258,7 +258,7 @@ function fn_detail_search(){
 </head>
 <body>
 	<H3>주문 조회</H3>
-	<form name="frm_delivery_list" action="${contextPath }/admin/admin.do" method="post">	
+	<form name="frm_delivery_list" action="${contextPath}/admin/order/adminOrderMain.do" method="post">	
 		<table   >
 			<tbody>
 				<tr>
@@ -440,7 +440,7 @@ function fn_detail_search(){
 						<option value="orderer_name">주문자이름</option>
 						<option value="orderer_id">주문자아이디</option>
 						<option value="orderer_phone">주문자휴대폰번호</option>
-						<option value="orderer_goods">주문상품품명</option>
+						<option value="order_goods_name">주문상품품명</option>
 					</select>
 					<input  type="text"  size="30" name="t_search_word" disabled />  
 					<input   type="button"  value="조회" name="btn_search" onClick="fn_detail_search()" disabled  />

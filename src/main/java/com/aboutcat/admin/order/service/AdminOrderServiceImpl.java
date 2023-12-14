@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.aboutcat.admin.order.dao.AdminOrderDAO;
+import com.aboutcat.member.vo.MemberVO;
 import com.aboutcat.order.vo.OrderVO;
 
 @Service("adminOrderService")
@@ -18,7 +19,7 @@ public class AdminOrderServiceImpl implements AdminOrderService{
 
 	@Override
 	public ArrayList<OrderVO> selectOrderList(Map<String, Object> condMap) {
-		ArrayList<OrderVO> orderList = adminOrderDAO.selectOrderList(condMap);
+		ArrayList<OrderVO> orderList = (ArrayList<OrderVO>)adminOrderDAO.selectOrderList(condMap);
 		return orderList;
 	}
 	
@@ -26,9 +27,21 @@ public class AdminOrderServiceImpl implements AdminOrderService{
 	public void changeDeliveryState(Map orderMap) {
 		adminOrderDAO.changeDeleveryState(orderMap);
 	}
-
+	
 	@Override
-	public void searchOrder(HashMap<String, String> searchMap) {
-		adminOrderDAO.searchOrder(searchMap);
+	public Map<String,Object> selectOrderDetail(int order_id){
+		Map<String,Object> orderMap = new HashMap<String,Object>();
+		
+		ArrayList<OrderVO> orderList = adminOrderDAO.selectOrderDetail(order_id);
+		OrderVO deliveryInfo = orderList.get(0);
+		String member_id = deliveryInfo.getMember_id();
+		MemberVO orderer = adminOrderDAO.selectOrdererInfo(member_id);
+		orderMap.put("orderList", orderList);
+		orderMap.put("orderer", orderer);
+		orderMap.put("deliveryInfo",deliveryInfo);
+		return orderMap;
 	}
+	
+	
+	//selectOrderDetail selectOrdererInfo
 }
