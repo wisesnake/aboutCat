@@ -35,6 +35,7 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		 memberVO=memberService.login(loginMap);
+		 System.out.println(memberVO);
 		if(memberVO!= null && memberVO.getMember_id()!=null){
 			HttpSession session=request.getSession();
 			session=request.getSession();
@@ -47,6 +48,9 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 			}else{
 				mav.setViewName("redirect:/main/main.do");	
 			}
+			
+			
+			
 		}else{
 			String message="아이디나  비밀번호가 틀립니다. 다시 로그인해주세요";
 			mav.addObject("message", message);
@@ -68,15 +72,15 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 	
 	@Override
 	@RequestMapping(value="/addMember.do" ,method = RequestMethod.POST)
-	public ResponseEntity addMember(MemberVO _memberVO,
+	public ResponseEntity addMember(@ModelAttribute("memberVO") MemberVO _memberVO,
 			                HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println(_memberVO.getPhone());
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		String message = null;
 		ResponseEntity resEntity = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
-		System.out.println(_memberVO);
 		try {
 		    memberService.addMember(_memberVO);
 		    message  = "<script>";
