@@ -39,6 +39,7 @@ function result(){
 		<br><br>
 		<INPUT	type="submit" value="로그인"> 
 		<INPUT type="button" value="초기화">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		
 		<Br><br>
 		   <a href="#">아이디 찾기</a>  | 

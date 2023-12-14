@@ -45,6 +45,16 @@
 		]]>
 	</select>
 
+	<select id="getMemberVO" resultType="memberVO"
+		parameterType="String">
+	    <![CDATA[
+			select * from cat_member_tbl 
+			 where member_id=#{member_id}	
+			 
+		]]>
+	</select>
+
+
 	<select id="selectOverlappedID" parameterType="String"
 		resultType="String">
 
