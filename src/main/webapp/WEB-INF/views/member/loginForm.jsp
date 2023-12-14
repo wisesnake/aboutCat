@@ -20,7 +20,7 @@ function result(){
 </script>
 </c:if>
 </head>
-<body> 
+<body>
 	<H3>회원 로그인 창</H3>
 	<DIV id="detail_table">
 	<form action="${contextPath}/member/login.do" method="post">
@@ -43,7 +43,8 @@ function result(){
 		<Br><br>
 		   <a href="#">아이디 찾기</a>  | 
 		   <a href="#">비밀번호 찾기</a> | 
-		   <a href="${contextPath}/member/memberForm.do">회원가입</a>    | 
+		   <a href="${contextPath}/member/addMember.do">회원가입</a>    | 
+		   <a href="#">고객 센터</a>
 					   
 	</form>	
 	</DIV>	

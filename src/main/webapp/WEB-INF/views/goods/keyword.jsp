@@ -12,89 +12,9 @@
 %>
 <head>
 <title>키워드(keyword)</title>
-<script>
-function fn_order_each_goods(goods_id, goods_name, goods_sell_price,
-		goods_image_fileName) {
-	var _isLogOn = document.getElementById("isLogOn");
-	var isLogOn = _isLogOn.value;
-
-	if (isLogOn == "false" || isLogOn == '') {
-		alert("로그인 후 주문이 가능합니다!!!");
-	}
-
-	var total_price, final_total_price;
-
-	var formObj = document.createElement("form");
-	var i_goods_id = document.createElement("input");
-	var i_goods_name = document.createElement("input");
-	var i_goods_sell_price = document.createElement("input");
-	var i_goods_image_fileName = document.createElement("input");
-	var i_order_goods_qty = document.createElement("input");;
-	
-
-	i_goods_id.name = "goods_id";
-	i_goods_name.name = "goods_name";
-	i_goods_sell_price.name = "goods_sell_price";
-	i_goods_image_fileName.name = "goods_image_fileName";
-	i_order_goods_qty.name = "order_goods_qty";
-
-	i_goods_id.value = goods_id;
-	i_order_goods_qty.value = 1;
-	i_goods_name.value = goods_name;
-	i_goods_sell_price.value = goods_sell_price;
-	i_goods_image_fileName.value = goods_image_fileName;
-
-	formObj.appendChild(i_goods_id);
-	formObj.appendChild(i_goods_name);
-	formObj.appendChild(i_goods_sell_price);
-	formObj.appendChild(i_goods_image_fileName);
-	formObj.appendChild(i_order_goods_qty);
-
-	document.body.appendChild(formObj);
-	formObj.method = "post";
-	formObj.action = "${contextPath}/order/orderEachGoods.do";
-	formObj.submit();
-
-}
-function add_cart(goods_id) {
-	
-	if(!${isLogOn}){
-		alert("로그인 후 이용 가능합니다.");
-		return;
-	}
-	$.ajax({
-		type : "post",
-		async : false, //false인 경우 동기식으로 처리한다.
-		url : "${contextPath}/cart/addGoodsInCart.do",
-		data : {
-			goods_id : goods_id,
-			cart_goods_qty : 1
-
-		},
-		success : function(data, textStatus) {
-			//alert(data);
-			//	$('#message').append(data);
-			if (data.trim() == 'add_success') {
-				alert("상품을 장바구니에 추가하였습니다.");
-			} else if (data.trim() == 'already_existed') {
-				alert("이미 카트에 등록된 상품입니다.");
-			}
-
-		},
-		error : function(data, textStatus) {
-			alert("에러가 발생했습니다." + data);
-		},
-		complete : function(data, textStatus) {
-			//alert("작업을완료 했습니다");
-		}
-	}); //end ajax	
-}
-</script>
 </head>
 <body>
-	<hgroup>
-		<h2 style="font-size:3ex; color:red;">오늘의 상품</h2>
-	</hgroup>
+
 	<section id="new_book">
 		<h3>새로나온 책</h3>
 		<div id="left_scroll">
@@ -113,9 +33,8 @@ function add_cart(goods_id) {
 					</c:when>
 					<c:otherwise>
 						<c:forEach var="item" items="${list}">
-
 						 <c:if test="${item.goods_status eq 'newgoods'}">
-							<li>
+							<li>새로운 상품
 								<div id="book">
 									<a
 										href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id}">
@@ -124,28 +43,20 @@ function add_cart(goods_id) {
 									</a>
 					<%-- 				<div class="title">${item.goods_name}</div> --%>
 									<div class="title">
-
 										<a
-											href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id}">
-											<img width="75" alt=""
-											src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_image_fileName}">
-										</a>
-										<%-- 				<div class="title">${item.goods_name}</div> --%>
-										<div class="title">
-											<a
-												href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
-												${item.goods_name} </a>
-										</div>
-										<div class="price">
-											<span> <fmt:formatNumber value="${item.goods_price}"
-													type="number" var="goods_price" /> ${goods_price}원
-											</span> <br>
-											<fmt:formatNumber value="${item.goods_price*0.9}"
-												type="number" var="discounted_price" />
-											${discounted_price}원(10%할인)
-										</div>
+											href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
+											${item.goods_name} </a>
 									</div>
-								</li>
+									<div class="price">
+										<span> <fmt:formatNumber value="${item.goods_price}"
+												type="number" var="goods_price" /> ${goods_price}원
+										</span> <br>
+										<fmt:formatNumber value="${item.goods_price*0.9}"
+											type="number" var="discounted_price" />
+										${discounted_price}원(10%할인)
+									</div>
+								</div>
+							</li>
 							</c:if>
 						</c:forEach>
 						<li></li>
@@ -165,9 +76,10 @@ function add_cart(goods_id) {
 	<div class="clear"></div>
 	<div id="sorting">
 		<ul>
-			<li><a class="active" href="#">인기순</a></li>
-			<li><a href="#">최신순</a></li>
-
+			<li><a class="active" href="#">베스트 셀러</a></li>
+			<li><a href="#">최신 출간</a></li>
+			<li><a style="border: currentColor; border-image: none;"
+				href="#">최근 등록</a></li>
 		</ul>
 	</div>
 	<table id="list_view">
@@ -192,15 +104,15 @@ function add_cart(goods_id) {
 					</td>
 					<td class="price"><span>${item.goods_price }원</span><br>
 						<strong> <fmt:formatNumber
-								value="${item.goods_sell_price}" type="number"
+								value="${item.goods_price*0.9}" type="number"
 								var="discounted_price" /> ${discounted_price}원
 					</strong><br>(10% 할인)</td>
 					<td><input type="checkbox" value=""></td>
 					<td class="buy_btns">
 						<UL>
-							<li><a href="javascript:add_cart('${item.goods_id }')">장바구니</a></li>
-							<li><a
-								href="javascript:fn_order_each_goods('${item.goods_id }','${item.goods_name }','${ item.goods_sell_price}','${item.goods_image_fileName}')">구매하기</a></li>
+							<li><a href="#">장바구니</a></li>
+							<li><a href="#">구매하기</a></li>
+							<li><a href="#">비교하기</a></li>
 						</UL>
 					</td>
 				</tr>
@@ -225,6 +137,3 @@ function add_cart(goods_id) {
 			<li><a class="no_border" href="#">Next</a></li>
 		</ul>
 	</div>
-	
-	<input type="hidden" name="isLogOn" id="isLogOn" value="${isLogOn}" />
-	

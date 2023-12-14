@@ -42,7 +42,7 @@
 			</c:when>
 			<c:otherwise>
 				<li>
-					<h3>&nbsp;&nbsp;공양이카테고리</h3>
+					<h3>카테고리</h3>
 					<ul>
 						<li><a href="${contextPath}/goods/keyword.do?keyword=food">사료</a></li>
 						<li><a href="${contextPath}/goods/keyword.do?keyword=snack">간식</a></li>
@@ -67,7 +67,7 @@
 	<UL>
 
 		<c:forEach var="i" begin="1" end="5" step="1">
-			<li><a href="#">공양이사항입니다.${ i}</a></li>
+			<li><a href="#">공지사항입니다.${ i}</a></li>
 		</c:forEach>
 	</ul>
 </div>

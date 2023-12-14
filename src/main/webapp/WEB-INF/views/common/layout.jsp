@@ -10,7 +10,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<link href="${contextPath}/resources/css/main.css" rel="stylesheet"
+<link href="${contextPath}/resources/css/main.css?after" rel="stylesheet"
 	type="text/css" media="screen">
 <link href="${contextPath}/resources/css/basic-jquery-slider.css"
 	rel="stylesheet" type="text/css" media="screen">

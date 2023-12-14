@@ -19,13 +19,13 @@ public class MemberVO {
 
 	private String phone;
 
-	private boolean sms_valid_check;
+	private Boolean sms_valid_check;
 
 	private String member_email1;
 
 	private String member_email2;
 
-	private boolean email_valid_check;
+	private Boolean email_valid_check;
 
 	private String postcode;
 
@@ -41,13 +41,12 @@ public class MemberVO {
 
 	private int birth_day;
 
-	private int birth_day_yinyang;
+	private boolean birth_day_yinyang;
 
 	private Date member_add_date;
 
 	private boolean member_deleted;
 
 	
-	
-	
+
 }

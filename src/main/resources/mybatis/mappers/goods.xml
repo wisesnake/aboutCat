@@ -73,7 +73,7 @@
 	<select id="selectGoodsBySearchWord" resultMap="goodsResult"
 		parameterType="String">
      <![CDATA[
-				select g.*,i.goods_image_filename
+				select g.*,i.goods_image_fileName
 				from cat_goods_tbl g, cat_goods_image_tbl i
 		    where g.goods_id=i.goods_id
 		    and i.goods_image_type='main_image'
