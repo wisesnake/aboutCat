@@ -23,4 +23,6 @@ public interface MemberController {
 
 	public ResponseEntity overlapped(@RequestParam("id") String id, HttpServletRequest request,
 			HttpServletResponse response) throws Exception;
+
+//	public void memberForm();
 }
