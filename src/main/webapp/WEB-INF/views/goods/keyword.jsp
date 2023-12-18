@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-		 pageEncoding="utf-8" isELIgnored="false"%>
+	pageEncoding="utf-8" isELIgnored="false"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -11,8 +11,8 @@
 	pageContext.setAttribute("br", "<br/>"); //br 태그
 %>
 <head>
-	<title>키워드(keyword)</title>
-	<script>
+<title>키워드(keyword)</title>
+<script>
 		function fn_order_each_goods(goods_id, goods_name, goods_sell_price,
 									 goods_image_fileName) {
 			var _isLogOn = document.getElementById("isLogOn");
@@ -93,114 +93,122 @@
 </head>
 <body>
 
-<section id="new_book">
-	<h3>새로나온 책</h3>
-	<div id="left_scroll">
-		<a href='javascript:slide("left");'><img
+	<section id="new_book">
+		<h3>새로나온 책</h3>
+		<div id="left_scroll">
+			<a href='javascript:slide("left");'><img
 				src="${contextPath}/resources/image/left.gif"></a>
-	</div>
-	<div id="carousel_inner">
-		<ul id="carousel_ul">
-			<c:choose>
-				<c:when test="${ List.goods_status eq 'newgoods'  }">
-					<li>
-						<div id="book">
-							<a><h1>새로운 상품이 제품이없습니다.</h1></a>
-						</div>
-					</li>
-				</c:when>
-				<c:otherwise>
-					<c:forEach var="item" items="${list}">
-						<c:if test="${item.goods_status eq 'newgoods'}">
-							<li>새로운 상품
-								<div id="book">
-									<a
-											href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id}">
-										<img width="75" alt=""
-											 src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_image_fileName}">
-									</a>
-										<%-- 				<div class="title">${item.goods_name}</div> --%>
-									<div class="title">
+		</div>
+		<div id="carousel_inner">
+			<ul id="carousel_ul">
+				<c:choose>
+					<c:when test="${ List.goods_status eq 'newgoods'  }">
+						<li>
+							<div id="book">
+								<a><h1>새로운 상품이 제품이없습니다.</h1></a>
+							</div>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="item" items="${list}">
+							<c:if test="${item.goods_status eq 'newgoods'}">
+								<li>새로운 상품
+									<div id="book">
 										<a
+											href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id}">
+											<img width="75" alt=""
+											src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_image_fileName}">
+										</a>
+										<%-- 				<div class="title">${item.goods_name}</div> --%>
+										<div class="title">
+											<a
 												href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
 												${item.goods_name} </a>
-									</div>
-									<div class="price">
+										</div>
+										<div class="price">
 											<span> <fmt:formatNumber value="${item.goods_price}"
-																	 type="number" var="goods_price" /> ${goods_price}원
+													type="number" var="goods_price" /> ${goods_price}원
 											</span> <br>
-										<fmt:formatNumber value="${item.goods_price*0.9}"
-														  type="number" var="discounted_price" />
-											${discounted_price}원(10%할인)
+											<fmt:formatNumber
+								value="${item.goods_sell_price}" type="number"
+								var="discounted_price" /> ${discounted_price}원<c:set var="discount_rate"
+							value="${100 - (item.goods_sell_price / item.goods_price) * 100 }" />
+						<c:set var="formatted_discount_rate" value="${discount_rate}" />
+						(${formatted_discount_rate.intValue()}%할인)
+										</div>
 									</div>
-								</div>
-							</li>
-						</c:if>
-					</c:forEach>
-					<li></li>
-				</c:otherwise>
-			</c:choose>
+								</li>
+							</c:if>
+						</c:forEach>
+						<li></li>
+					</c:otherwise>
+				</c:choose>
 
+			</ul>
+		</div>
+		<div id="right_scroll">
+			<a href='javascript:slide("right");'><img
+				src="${contextPath}/resources/image/right.gif"></a>
+		</div>
+		<input id="hidden_auto_slide_seconds" type="hidden" value="0">
+
+		<div class="clear"></div>
+	</section>
+	<div class="clear"></div>
+
+	<table id="list_view">
+		<tbody>
+			<c:forEach var="item" items="${list}">
+				<tr>
+					<td class="goods_image"><a
+						href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id}">
+							<img width="75" alt=""
+							src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_image_fileName}">
+					</a></td>
+					<td class="goods_description">
+						<h2>
+							<a
+								href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">${item.goods_name}</a>
+					</td>
+					
+					<td class="price"><span>${item.goods_price }원</span><br>
+						<strong> <fmt:formatNumber
+								value="${item.goods_sell_price}" type="number"
+								var="discounted_price" /> ${discounted_price}원
+					</strong><br> <c:set var="discount_rate"
+							value="${100 - (item.goods_sell_price / item.goods_price) * 100 }" />
+						<c:set var="formatted_discount_rate" value="${discount_rate}" />
+						(${formatted_discount_rate.intValue()}%할인)</td>
+						
+					<td class="buy_btns">
+						<UL>
+							<li><a href="javascript:add_cart('${item.goods_id}')">장바구니</a></li>
+							<li><a
+								href="javascript:fn_order_each_goods('${item.goods_id }','${item.goods_name }','${ item.goods_sell_price}','${item.goods_image_fileName}')">구매하기</a></li>
+						</UL>
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	<div class="clear"></div>
+	<div id="page_wrap">
+		<ul id="page_control">
+			<li><a class="no_border" href="#">Prev</a></li>
+			<c:set var="page_num" value="0" />
+			<c:forEach var="count" begin="1" end="10" step="1">
+				<c:choose>
+					<c:when test="${count==1 }">
+						<li><a class="page_contrl_active" href="#">${count+page_num*10 }</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a href="#">${count+page_num*10 }</a></li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<li><a class="no_border" href="#">Next</a></li>
 		</ul>
 	</div>
-	<div id="right_scroll">
-		<a href='javascript:slide("right");'><img
-				src="${contextPath}/resources/image/right.gif"></a>
-	</div>
-	<input id="hidden_auto_slide_seconds" type="hidden" value="0">
-
-	<div class="clear"></div>
-</section>
-<div class="clear"></div>
-
-<table id="list_view">
-	<tbody>
-	<c:forEach var="item" items="${list}">
-		<tr>
-			<td class="goods_image"><a
-					href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id}">
-				<img width="75" alt=""
-					 src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_image_fileName}">
-			</a></td>
-			<td class="goods_description">
-				<h2>
-					<a
-							href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">${item.goods_name}</a>
-			</td>
-			<td class="price"><span>${item.goods_price }원</span><br>
-				<strong> <fmt:formatNumber
-						value="${item.goods_price*0.9}" type="number"
-						var="discounted_price" /> ${discounted_price}원
-				</strong><br>(10% 할인)</td>
-			<td class="buy_btns">
-				<UL>
-					<li><a href="javascript:add_cart('${item.goods_id}')">장바구니</a></li>
-					<li><a
-							href="javascript:fn_order_each_goods('${item.goods_id }','${item.goods_name }','${ item.goods_sell_price}','${item.goods_image_fileName}')">구매하기</a></li>
-				</UL>
-			</td>
-		</tr>
-	</c:forEach>
-	</tbody>
-</table>
-<div class="clear"></div>
-<div id="page_wrap">
-	<ul id="page_control">
-		<li><a class="no_border" href="#">Prev</a></li>
-		<c:set var="page_num" value="0" />
-		<c:forEach var="count" begin="1" end="10" step="1">
-			<c:choose>
-				<c:when test="${count==1 }">
-					<li><a class="page_contrl_active" href="#">${count+page_num*10 }</a></li>
-				</c:when>
-				<c:otherwise>
-					<li><a href="#">${count+page_num*10 }</a></li>
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
-		<li><a class="no_border" href="#">Next</a></li>
-	</ul>
-</div>
 
 
-<input type="hidden" name="isLogOn" id="isLogOn" value="${isLogOn}" />
+	<input type="hidden" name="isLogOn" id="isLogOn" value="${isLogOn}" />
