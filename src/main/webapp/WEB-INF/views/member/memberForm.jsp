@@ -99,6 +99,21 @@
 			}
 		}); //end ajax	 
 	}
+	
+	function updateEmail2(selectElement) {
+	    var memberEmail2Input = document.getElementsByName("member_email2")[0];
+
+	    if (selectElement.value === "non") {
+	        // 직접입력을 선택한 경우
+	        memberEmail2Input.value = "";
+	    } else {
+	        // 다른 옵션을 선택한 경우
+	        memberEmail2Input.value = selectElement.value;
+	    }
+	}
+	
+
+	
 </script>
 </head>
 <body>
@@ -188,8 +203,8 @@
 						<td class="fixed_join">이메일<br>(e-mail)
 						</td>
 						<td><input size="10px" type="text" name="member_email1" /> @
-							<input size="10px" type="text" name="member_email2" /> <select
-							name="member_email2" onChange="" title="직접입력">
+							<input size="10px" type="text" name="member_email2"/> 
+							<select	name="s_member_email2" onChange="updateEmail2(this)" title="직접입력">
 								<option value="non">직접입력</option>
 								<option value="hanmail.net">hanmail.net</option>
 								<option value="naver.com">naver.com</option>
@@ -202,7 +217,8 @@
 								<option value="empal.com">empal.com</option>
 								<option value="korea.com">korea.com</option>
 								<option value="freechal.com">freechal.com</option>
-						</select><br> <br> <c:choose> 
+						</select><br> <br> 
+						<c:choose> 
 					   <c:when test="${member_info.email_valid_check}">
 					     <input type="checkbox" name="email_valid_check"  value="true" checked /> 쇼핑몰에서 발송하는 e-mail을 수신합니다.
 						</c:when>
@@ -237,5 +253,6 @@
 			</table>
 		</div>
 	</form>
+
 </body>
 </html>
