@@ -9,6 +9,8 @@ import lombok.Data;
 @Data
 @Component("memberVO")
 public class MemberVO {
+	
+	
 	private String member_id;
 
 	private String member_pw;
@@ -46,7 +48,5 @@ public class MemberVO {
 	private Date member_add_date;
 
 	private boolean member_deleted;
-
-	
 
 }

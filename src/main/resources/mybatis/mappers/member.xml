@@ -80,10 +80,10 @@
                #{member_name},
                #{member_gender},
                #{phone},
-               #{sms_valid_check},
+               #{sms_valid_check, jdbcType=INTEGER},
                #{member_email1},
                #{member_email2},
-               #{email_valid_check},
+               #{email_valid_check, jdbcType=INTEGER},
                #{postcode},
                #{address1_new},
                #{address1_old},
@@ -91,8 +91,8 @@
                #{birth_year},
                #{birth_month},
                #{birth_day},
-               #{birth_day_yinyang},
-               #{member_deleted})
+               #{birth_day_yinyang, jdbcType=INTEGER},
+               #{member_deleted, jdbcType=INTEGER})
    ]]>
 	</insert>
 

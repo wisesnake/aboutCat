@@ -69,7 +69,13 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		mav.setViewName("redirect:/main/main.do");
 		return mav;
 	}
-	
+//	
+//	@Override
+//	@RequestMapping(value ="/memberForm.do",method = RequestMethod.GET)
+//	public void memberForm() {
+//		System.out.println("memberForm.jsp calling");
+//	}
+//	
 	@Override
 	@RequestMapping(value="/addMember.do" ,method = RequestMethod.POST)
 	public ResponseEntity addMember(@ModelAttribute("memberVO") MemberVO _memberVO,
