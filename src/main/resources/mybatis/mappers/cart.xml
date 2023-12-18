@@ -71,15 +71,17 @@
        ]]>
    </select>
 
-   <insert id="insertGoodsInCart" parameterType="cartVO">
+    <insert id="insertGoodsInCart" parameterType="cartVO">
        <![CDATA[
-             insert into cat_shopping_cart_tbl(cart_id,
-                                        goods_id,
-                                        member_id)
-                           values(#{cart_id},
-                                 #{goods_id},
-                                 #{member_id})
-       ]]>
+        insert into cat_shopping_cart_tbl(cart_id,
+                                          goods_id,
+                                          member_id,
+                                          cart_goods_qty)
+        values(#{cart_id},
+               #{goods_id},
+               #{member_id},
+               #{cart_goods_qty})
+        ]]>
    </insert>
 
    <update id="updateCartGoodsQty" parameterType="cartVO">
