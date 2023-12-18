@@ -52,9 +52,18 @@
 
 				<div class="title">${item.goods_name }</div>
 				<div class="price">
-					<fmt:formatNumber value="${item.goods_price}" type="number"
-						var="goods_price" />
-					${goods_price}원
+				<span><s> <fmt:formatNumber
+									value="${item.goods_price}" type="number" var="goods_price" />
+								${goods_price}원
+						</s></span><br>
+					<span> <fmt:formatNumber
+								value="${item.goods_sell_price}" type="number"
+								var="discounted_price" /> ${discounted_price}원 <br> <c:set
+								var="discount_rate"
+								value="${100 - (item.goods_sell_price / item.goods_price) * 100 }" />
+							<c:set var="formatted_discount_rate" value="${discount_rate}" />
+							(${formatted_discount_rate.intValue()}%할인)
+					</span>
 				</div>
 		</div>
 		</a>
@@ -88,9 +97,18 @@
 				src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_image_fileName}">
 				<div class="title">${item.goods_name }</div>
 				<div class="price">
-					<fmt:formatNumber value="${item.goods_price}" type="number"
-						var="goods_price" />
-					${goods_price}원
+				<span><s> <fmt:formatNumber
+									value="${item.goods_price}" type="number" var="goods_price" />
+								${goods_price}원
+						</s></span><br>
+					<span> <fmt:formatNumber
+								value="${item.goods_sell_price}" type="number"
+								var="discounted_price" /> ${discounted_price}원 <br> <c:set
+								var="discount_rate"
+								value="${100 - (item.goods_sell_price / item.goods_price) * 100 }" />
+							<c:set var="formatted_discount_rate" value="${discount_rate}" />
+							(${formatted_discount_rate.intValue()}%할인)
+					</span>
 				</div>
 		</div>
 		</a>
@@ -123,9 +141,18 @@
 				src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_image_fileName}">
 				<div class="title">${item.goods_name }</div>
 				<div class="price">
-					<fmt:formatNumber value="${item.goods_price}" type="number"
-						var="goods_price" />
-					${goods_price}원
+				<span><s> <fmt:formatNumber
+									value="${item.goods_price}" type="number" var="goods_price" />
+								${goods_price}원
+						</s></span><br>
+					<span> <fmt:formatNumber
+								value="${item.goods_sell_price}" type="number"
+								var="discounted_price" /> ${discounted_price}원 <br> <c:set
+								var="discount_rate"
+								value="${100 - (item.goods_sell_price / item.goods_price) * 100 }" />
+							<c:set var="formatted_discount_rate" value="${discount_rate}" />
+							(${formatted_discount_rate.intValue()}%할인)
+					</span>
 				</div>
 		</div>
 		</a>
