@@ -46,6 +46,7 @@
       select cart_id, goods_id, member_id, cart_goods_qty, creDate 
       from cat_shopping_cart_tbl
       where member_id=#{member_id} 
+      order by goods_id desc
       ]]>
    </select>
 
