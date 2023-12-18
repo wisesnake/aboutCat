@@ -42,6 +42,7 @@
 		                goods_keyword,
                     goods_name,
 										goods_price,
+										goods_sell_price,
 										goods_status,
 										goods_description)
 					  			values(
@@ -49,8 +50,8 @@
 					  			      #{goods_brand},
 					  			      #{goods_keyword},
 					  			      #{goods_name},
-					  			      
 					  			      #{goods_price},
+					  			      #{goods_sell_price},
 					  			      
 					  			      #{goods_status},
 											

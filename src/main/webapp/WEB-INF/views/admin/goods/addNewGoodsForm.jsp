@@ -76,7 +76,11 @@
 							</tr>
 							<tr>
 								<td>제품정가</td>
-								<td><input name="goods_price" type="text" size="40" /></td>
+								<td><input name="goods_price" type="number" size="40" /></td>
+							</tr>
+							<tr>
+								<td>제품판매가</td>
+								<td><input name="goods_sell_price" type="number" size="40" /></td>
 							</tr>
 							<tr>
 								<td>제품종류</td>
