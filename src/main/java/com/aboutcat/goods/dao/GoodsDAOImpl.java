@@ -59,5 +59,11 @@ public class GoodsDAOImpl implements GoodsDAO {
 		return list;
 
 	}
+	@Override
+	public int keywordcount(String keyword) {
+		int keywordcount=sqlSession.selectOne("mapper.goods.KeywordCount", keyword);
+		System.out.println(keywordcount);
+		return keywordcount;
+	}
 
 }

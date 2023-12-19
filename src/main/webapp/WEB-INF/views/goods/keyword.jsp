@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import="java.lang.Math" %>
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%
 	//치환 변수 선언합니다.
@@ -194,9 +196,15 @@
 	<div class="clear"></div>
 	<div id="page_wrap">
 		<ul id="page_control">
-			<li><a class="no_border" href="#">Prev</a></li>
+		    <%
+           Object countObj = request.getAttribute("keywordcount");
+           int count1 = (countObj instanceof Integer) ? (Integer) countObj : 0;
+    int roundedPageCount = (int) Math.ceil((double) count1 / 10);
+    pageContext.setAttribute("roundedPageCount", roundedPageCount);
+%>
+<!-- 			<li><a class="no_border" href="#">Prev</a></li> -->
 			<c:set var="page_num" value="0" />
-			<c:forEach var="count" begin="1" end="10" step="1">
+			<c:forEach var="count" begin="1" end="${(keywordcount+9) /10 }" step="1">
 				<c:choose>
 					<c:when test="${count==1 }">
 						<li><a class="page_contrl_active" href="#">${count+page_num*10 }</a></li>
@@ -206,9 +214,8 @@
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
-			<li><a class="no_border" href="#">Next</a></li>
+<!-- 			<li><a class="no_border" href="#">Next</a></li> -->
 		</ul>
 	</div>
-
 
 	<input type="hidden" name="isLogOn" id="isLogOn" value="${isLogOn}" />

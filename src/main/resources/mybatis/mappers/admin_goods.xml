@@ -62,6 +62,8 @@
 
 
 
+
+
 	<select id="selectNewGoodsList" resultMap="goodsResult"
 		parameterType="java.util.Map">
 	    <![CDATA[
@@ -94,7 +96,9 @@
 					    )
 				)							
 			where				
-		recNum between (#{section}-1)*100+ (#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10				        
+ 
+  recNum between (#{section}-1)*100+ (#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10
+					        
     	]]>
 	</select>
 
@@ -127,6 +131,17 @@
 	        order by g.goods_id
     	]]>
 	</select>
+
+
+<select id="goodsCount" resultType="int">
+		
+		   <![CDATA[
+		   
+	SELECT COUNT(*) FROM cat_goods_tbl
+		
+    	]]>
+		
+</select>
 
 	<select id="selectGoodsImageFileList" resultMap="imageResult"
 		parameterType="String">

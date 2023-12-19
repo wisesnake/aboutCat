@@ -16,6 +16,7 @@ public interface AdminGoodsService {
 	public void modifyGoodsInfo(Map goodsMap) throws Exception;
 	public void modifyGoodsImage(List<ImageFileVO> imageFileList) throws Exception;
 	public void removeGoodsImage(int image_id) throws Exception;
+	int count();
 
 	
 	

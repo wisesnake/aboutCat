@@ -299,7 +299,7 @@
 								<c:set var="cart_id" value="${myCartList[i].cart_id}" />
 								<td><input type="checkbox" name="checked_goods"
 									value="${item.goods_id }" onclick="calcTot()"
-									price="${item.goods_price*0.9}" qty="${cart_goods_qty }"
+									price="${item.goods_sell_price}" qty="${cart_goods_qty }"
 									checked></td>
 								<td class="goods_image"><a
 									href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
@@ -314,18 +314,24 @@
 								</td>
 								<td class="price"><span id="goods_price">${item.goods_price }원</span></td>
 								<td><strong> <fmt:formatNumber
-											value="${item.goods_price*0.9}" type="number"
-											var="total_sales_price" /> 판매가 ${total_sales_price}원(10%할인)
+											value="${item.goods_sell_price}" type="number"
+											var="total_sales_price" /> 판매가 ${total_sales_price}원
+											<c:set
+								var="discount_rate"
+								value="${100 - (item.goods_sell_price / item.goods_price) * 100 }" />
+							<c:set var="formatted_discount_rate" value="${discount_rate}" />
+							(${formatted_discount_rate.intValue()}%할인)
+											
 								</strong></td>
 								<td><input type="text" id="cart_goods_qty"
 									name="cart_goods_qty" size=3 value="${cart_goods_qty}"><br>
 									<a
-									href="javascript:modify_cart_qty(${item.goods_id },${item.goods_price*0.9 },${cnt.count-1 });">
+									href="javascript:modify_cart_qty(${item.goods_id },${item.goods_sell_price },${cnt.count-1 });">
 										<img width=25 alt=""
 										src="${contextPath}/resources/image/btn_modify_qty.jpg">
 								</a></td>
 								<td><strong> <fmt:formatNumber
-											value="${item.goods_price*0.9*cart_goods_qty}" type="number"
+											value="${item.goods_sell_price*cart_goods_qty}" type="number"
 											var="total_sales_price" /> <span id="tot_price">${total_sales_price}</span>원
 								</strong></td>
 								<td><a
@@ -339,7 +345,7 @@
 								</a></td>
 					</tr>
 					<c:set var="totalGoodsPrice"
-						value="${totalGoodsPrice+item.goods_price*0.9*cart_goods_qty }" />
+						value="${totalGoodsPrice+item.goods_sell_price*cart_goods_qty }" />
 					<c:set var="totalGoodsNum" value="${totalGoodsNum+1 }" />
 					<c:set var="i" value="${i = i+1 }" />
 					</c:forEach>

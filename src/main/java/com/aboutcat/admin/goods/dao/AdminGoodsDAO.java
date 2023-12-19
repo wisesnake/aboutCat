@@ -21,6 +21,7 @@ public interface AdminGoodsDAO {
 
 	public void deleteGoodsImage(int image_id) throws DataAccessException;
 	public void deleteGoodsImage(List fileList) throws DataAccessException;
+	public int count();
 	
 	
 }

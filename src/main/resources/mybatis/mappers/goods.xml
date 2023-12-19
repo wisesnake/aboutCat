@@ -93,6 +93,17 @@
 	</select>
 
 
+	<select id="KeywordCount"
+		resultType="int">
+	    <![CDATA[
+	            select COUNT(*) from 
+                cat_goods_tbl g, cat_goods_image_tbl i
+                where g.goods_id= i.goods_id
+                and i.goods_image_type='main_image'
+                and goods_keyword= #{keyword}
+    	]]>
+	</select>
+
 	<select id="selectKeywordSearch" parameterType="String"
 		resultMap="goodsResult">
 	    <![CDATA[

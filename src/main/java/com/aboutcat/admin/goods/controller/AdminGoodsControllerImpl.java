@@ -50,6 +50,7 @@ public class AdminGoodsControllerImpl extends BaseController implements AdminGoo
 		String fixedSearchPeriod = dateMap.get("fixedSearchPeriod");
 		String section = dateMap.get("section");
 		String pageNum = dateMap.get("pageNum");
+		
 		String beginDate=null,endDate=null;
 		
 		String [] tempDate=calcSearchPeriod(fixedSearchPeriod).split(",");
@@ -69,9 +70,10 @@ public class AdminGoodsControllerImpl extends BaseController implements AdminGoo
 		condMap.put("pageNum",pageNum);
 		condMap.put("beginDate",beginDate);
 		condMap.put("endDate", endDate);
+		int count = adminGoodsService.count();
+		mav.addObject("count", count);
 		List<GoodsVO> newGoodsList=adminGoodsService.listNewGoods(condMap);
 		mav.addObject("newGoodsList", newGoodsList);
-		
 		String beginDate1[]=beginDate.split("-");
 		String endDate2[]=endDate.split("-");
 		mav.addObject("beginYear",beginDate1[0]);
@@ -80,7 +82,6 @@ public class AdminGoodsControllerImpl extends BaseController implements AdminGoo
 		mav.addObject("endYear",endDate2[0]);
 		mav.addObject("endMonth",endDate2[1]);
 		mav.addObject("endDay",endDate2[2]);
-		
 		mav.addObject("section", section);
 		mav.addObject("pageNum", pageNum);
 		return mav;

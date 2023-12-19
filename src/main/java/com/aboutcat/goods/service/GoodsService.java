@@ -20,5 +20,7 @@ public interface GoodsService {
 	
 	public List<String> keywordSearch(String keyword) throws Exception;
 
+	int keywordcount(String keyword);
+
 	
 }

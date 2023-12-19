@@ -21,4 +21,6 @@ public interface GoodsDAO {
 
 	public List<String> selectKeywordSearch(String keyword) throws DataAccessException;
 
+	int keywordcount(String keyword);
+
 }

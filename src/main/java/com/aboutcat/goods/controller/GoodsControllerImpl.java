@@ -45,6 +45,7 @@ public class GoodsControllerImpl implements GoodsController {
 		String viewName = (String) request.getAttribute("viewName");
 		List<GoodsVO> goodsList = goodsService.searchGoods(searchWord);
 		ModelAndView mav = new ModelAndView(viewName);
+
 		mav.addObject("goodsList", goodsList);
 		return mav;
 
@@ -54,12 +55,12 @@ public class GoodsControllerImpl implements GoodsController {
 	public ModelAndView keyword(@RequestParam("keyword") String keyword, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
-		System.out.println("여기 키워드 서치 컨트롤러");
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-
+		int keywordcount=goodsService.keywordcount(keyword);
 		List<GoodsVO> list = goodsService.keyword(keyword);
 		mav.addObject("list", list);
+		mav.addObject(keywordcount);
 		// 그뒤에 JSON쓰는 이유 몰라서 아직 안씀
 		return mav;
 	}

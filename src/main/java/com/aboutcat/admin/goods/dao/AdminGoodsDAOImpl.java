@@ -82,6 +82,12 @@ public class AdminGoodsDAOImpl implements AdminGoodsDAO{
 		}
 	}
 	
+	@Override
+	public int count() {
+		
+		int count = sqlSession.selectOne("mapper.admin.goods.goodsCount");
+		return count;
+	}
 	
 	
 }

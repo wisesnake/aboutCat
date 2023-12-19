@@ -38,6 +38,12 @@ public class AdminGoodsServiceImpl implements AdminGoodsService{
 	}
 	
 	@Override
+	public int count() {
+		int count=adminGoodsDAO.count();
+		return count;
+	}
+	
+	@Override
 	public void addNewGoodsImage(List imageFileList) throws Exception{
 		adminGoodsDAO.insertGoodsImageFile(imageFileList);
 	}

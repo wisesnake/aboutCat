@@ -65,4 +65,9 @@ public class GoodsServiceImpl implements GoodsService {
 		return list;
 	}
 
+	@Override
+	public int keywordcount(String keyword) {
+	int keywordcount = goodsDAO.keywordcount(keyword);
+	return keywordcount;
+	}
 }

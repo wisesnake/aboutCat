@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"
 	isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.lang.Math" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <!DOCTYPE html >
@@ -198,7 +199,9 @@ function  calcPeriod(search_period){
 				<td>상품브랜드</td>
 				<td>상품이름</td>
 				<td>상품가격</td>
+				<td>판매가격</td>
 			</tr>
+		
    <c:choose>
      <c:when test="${empty newGoodsList }">			
 			<TR>
@@ -208,6 +211,9 @@ function  calcPeriod(search_period){
 		     </TR>
 	 </c:when>
 	 <c:otherwise>
+	 
+	 
+	 
      <c:forEach var="item" items="${newGoodsList }">
 			 <TR>       
 				<TD>
@@ -227,21 +233,25 @@ function  calcPeriod(search_period){
 				<td>
 				 <strong>${item.goods_price }</strong> 
 				</td>
-				<%-- <td>
-				    <c:set var="pub_date" value="${item.goods_published_date}" />
-					   <c:set var="arr" value="${fn:split(pub_date,' ')}" />
-					<strong>
-					   <c:out value="${arr[0]}" />
-					</strong>
-				</td> --%>
+					<td>
+				 <strong>${item.goods_sell_price }</strong> 
+				</td>
+
 				
 			</TR>
 	</c:forEach>
 	</c:otherwise>
   </c:choose>
            <tr>
-             <td colspan=8 class="fixed">
-                 <c:forEach   var="page" begin="1" end="10" step="1" >
+           
+           <%
+           Object countObj = request.getAttribute("count");
+           int count1 = (countObj instanceof Integer) ? (Integer) countObj : 0;
+    int roundedPageCount = (int) Math.ceil((double) count1 / 10);
+    pageContext.setAttribute("roundedPageCount", roundedPageCount);
+%>
+              <td colspan=8 class="fixed">
+                 <c:forEach   var="page" begin="1" end="${roundedPageCount }" step="1" >
 		         <c:if test="${section >1 && page==1 }">
 		          <a href="${contextPath}/admin/goods/adminGoodsMain.do?chapter=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp; &nbsp;</a>
 		         </c:if>
@@ -249,7 +259,12 @@ function  calcPeriod(search_period){
 		         <c:if test="${page ==10 }">
 		          <a href="${contextPath}/admin/goods/adminGooodsMain.do?chapter=${section+1}&pageNum=${section*10+1}">&nbsp; next</a>
 		         </c:if> 
-	      		</c:forEach> 
+	      		</c:forEach>  
+     </td></tr>
+     
+   
+     
+     
      
 		</TBODY>
 		
