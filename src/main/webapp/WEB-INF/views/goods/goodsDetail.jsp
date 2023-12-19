@@ -124,7 +124,7 @@
 			<tbody>
 				<tr>
 					<td class="fixed">정가</td>
-					<td class="active"><span><s> <fmt:formatNumber
+					<td class="active1"><span><s> <fmt:formatNumber
 									value="${goods.goods_price}" type="number" var="goods_price" />
 								${goods_price}원
 						</s></span></td>
@@ -132,7 +132,7 @@
 				<tr class="dot_line">
 					<td class="fixed">판매가</td>
 
-					<td class="active"><span> <fmt:formatNumber
+					<td class="active2"><span> <fmt:formatNumber
 								value="${goods.goods_sell_price}" type="number"
 								var="discounted_price" /> ${discounted_price}원 <br> <c:set
 								var="discount_rate"
@@ -209,7 +209,7 @@
 		</div>
 	</div>
 	<!-- Modal -->
-	<div class="modal fade" id="cartSuccess" tabindex="-1" role="dialog"
+	<!-- <div class="modal fade" id="cartSuccess" tabindex="-1" role="dialog"
 		aria-labelledby="cartSuccess" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
@@ -228,7 +228,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 
 </body>

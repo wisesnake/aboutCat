@@ -260,7 +260,10 @@ article ul#page_control li a:hover {
 article ul#page_control li a.no_border {
 	border: currentColor; border-image: none; padding-top: 3px;
 }
-.active {
+.active1 {
+	 font-weight: bold;font-size: 0.8em;
+}
+.active2 {
 	color: rgb(255, 0, 0); font-weight: bold;font-size: 0.8em;
 }
 article ul#page_control li .page_contrl_active {
