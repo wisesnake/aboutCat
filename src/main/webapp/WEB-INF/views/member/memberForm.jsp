@@ -67,7 +67,6 @@
 
 	function fn_overlapped() {
 		var _id = $("#_member_id").val();
-		alert($("#_member_id").val());
 		if (_id == '') {
 			alert("ID를 입력하세요");
 			return;
@@ -233,8 +232,8 @@
 							size="10"> <a href="javascript:execDaumPostcode()">우편번호검색</a>
 							<br>
 							<p>
-								지번 주소:<br> <input type="text" id="address1_new"
-									name="address1_new" size="50"><br> <br> 도로명
+								도로명 주소:<br> <input type="text" id="address1_new"
+									name="address1_new" size="50"><br> <br> 지번
 								주소: <input type="text" id="address1_old" name="address1_old"
 									size="50"><br> <br> 나머지 주소: <input
 									type="text" name="address2" size="50" />
