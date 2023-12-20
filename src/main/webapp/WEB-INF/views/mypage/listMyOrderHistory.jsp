@@ -1,3 +1,5 @@
+
+
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"
 	isELIgnored="false"%>  
@@ -144,7 +146,7 @@ function fn_cancel_order(order_id){
 <div class="clear"></div>
 <table class="list_view">
 		<tbody align=center >
-			<tr style="background:#33ff00" >
+			<tr style="background: rgb(255, 205, 205)" >
 				<td class="fixed" >주문번호</td>
 				<td class="fixed">주문일자</td>
 				<td>주문내역</td>
