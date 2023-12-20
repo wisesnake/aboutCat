@@ -62,7 +62,7 @@
 									value="${item.goods_price}" type="number" var="goods_price" />
 								${goods_price}원
 						</s></span><br>
-					<span> <fmt:formatNumber
+					<span style="font-weight: bold; color: red;"> <fmt:formatNumber
 								value="${item.goods_sell_price}" type="number"
 								var="discounted_price" /> ${discounted_price}원 <br> <c:set
 								var="discount_rate"
@@ -103,11 +103,11 @@
 				src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_image_fileName}">
 				<div class="title">${item.goods_name }</div>
 				<div class="price">
-				<span><s> <fmt:formatNumber
+				<span> <fmt:formatNumber
 									value="${item.goods_price}" type="number" var="goods_price" />
 								${goods_price}원
-						</s></span><br>
-					<span> <fmt:formatNumber
+						</span><br>
+					<span style="font-weight: bold; color: red;"> <fmt:formatNumber
 								value="${item.goods_sell_price}" type="number"
 								var="discounted_price" /> ${discounted_price}원 <br> <c:set
 								var="discount_rate"
@@ -147,11 +147,11 @@
 				src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_image_fileName}">
 				<div class="title">${item.goods_name }</div>
 				<div class="price">
-				<span><s> <fmt:formatNumber
+				<span><fmt:formatNumber
 									value="${item.goods_price}" type="number" var="goods_price" />
 								${goods_price}원
-						</s></span><br>
-					<span> <fmt:formatNumber
+						</span><br>
+					<span style="font-weight: bold; color: red;"> <fmt:formatNumber
 								value="${item.goods_sell_price}" type="number"
 								var="discounted_price" /> ${discounted_price}원 <br> <c:set
 								var="discount_rate"

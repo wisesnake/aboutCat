@@ -360,8 +360,8 @@ function fn_modify_member_info(attribute){
 					   <input type="text" id="postcode" name="postcode" size=5 value="${memberInfo.postcode }" > <a href="javascript:execDaumPostcode()">우편번호검색</a>
 					  <br>
 					  <p> 
-					   지번 주소:<br><input type="text" id="address1_new"  name="address1_new" size="50" value="${memberInfo.address1_new }"><br><br>
-					  도로명 주소: <input type="text" id="address1_old" name="address1_old" size="50" value="${memberInfo.address1_old }"><br><br>
+					  도로명 주소:<br><input type="text" id="address1_new"  name="address1_new" size="50" value="${memberInfo.address1_new }"><br><br>
+					  지번주소: <input type="text" id="address1_old" name="address1_old" size="50" value="${memberInfo.address1_old }"><br><br>
 					  나머지 주소: <input type="text"  name="address2" size="50" value="${memberInfo.address2 }" />
 					   </p>
 					</td>
@@ -378,7 +378,7 @@ function fn_modify_member_info(attribute){
 		<tr>
 			<td >
 				<input type="hidden" name="command"  value="modify_my_info" /> 
-				<input name="btn_cancel_member" type="button"  value="수정 취소">
+				<a href="${contextPath}/mypage/myPageMain.do"><input name="btn_cancel_member" type="button"  value="수정 취소"></a>
 			</td>
 		</tr>
 	</table>
