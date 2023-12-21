@@ -105,7 +105,7 @@
 	<insert id="insertGoodsImageFile" parameterType="imageFileVO">
 		<selectKey resultType="int" keyProperty="goods_image_id"
 			order="BEFORE">
-			select seq_goods_image_id.nextval from dual
+			select seq_image_id.nextval from dual
 		</selectKey>
 	    <![CDATA[
 		   insert into cat_goods_image_tbl (goods_image_id,
